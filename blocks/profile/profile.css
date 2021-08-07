@@ -1,0 +1,6 @@
+.profile {
+    padding: 42px 20px 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
