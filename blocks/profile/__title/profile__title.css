@@ -16,6 +16,7 @@
 
 @media (min-width: 950px) {
     .profile__title {
-        max-width: 330px;
+        align-self: flex-start;
+        justify-content: start;
     }
 }

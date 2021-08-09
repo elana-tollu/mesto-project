@@ -7,9 +7,10 @@
 
 @media (min-width: 950px) {
     .profile {
-        padding-left: 0;
         max-width: 880px;
-        flex-direction: row;
-        justify-content: start;
+        padding: 40px 0 16px 0;
+        display: grid;
+        grid-template-columns: 120px 1fr 150px;
+        gap: 30px;
     }
 }
