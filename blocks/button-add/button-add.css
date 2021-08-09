@@ -6,3 +6,10 @@
     background-color: #000;
     align-self: center;
 }
+
+@media (min-width: 950px) {
+    .button-add {
+        width: 150px;
+        align-items: flex-end;
+    }
+}

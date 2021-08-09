@@ -8,3 +8,10 @@
     background-color: #000;
     align-self: center;
 }
+
+@media (min-width: 650px) {
+    .button-edit {
+        width: 24px;
+        height: 24px;
+    }
+}

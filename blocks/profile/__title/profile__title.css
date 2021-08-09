@@ -7,3 +7,15 @@
     flex-direction: row;
     justify-content: center;
 }
+
+@media (min-width: 650px) {
+    .profile__title {
+        max-width: 580px;
+    }
+}
+
+@media (min-width: 950px) {
+    .profile__title {
+        max-width: 330px;
+    }
+}

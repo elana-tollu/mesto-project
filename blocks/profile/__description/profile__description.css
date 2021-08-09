@@ -8,3 +8,17 @@
     color: #FFFFFF;
     text-align: center;
 }
+
+@media (min-width: 650px) {
+    .profile__description {
+        margin: 16px 0 24px 0;
+        font-size: 18px;
+        line-height: 22px;
+    }
+}
+
+@media (min-width: 950px) {
+    .profile__description {
+        text-align: left;
+    }
+}
