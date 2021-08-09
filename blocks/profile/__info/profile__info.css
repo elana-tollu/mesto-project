@@ -1,13 +1,20 @@
 .profile__info {
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
+@media (min-width: 650px) {
+    .profile__info {
+        width: 580px;
+    }
+}
+
 @media (min-width: 950px) {
     .profile__info {
+        max-width: 550px;
         justify-content: left;
     }
 }
