@@ -1,13 +1,17 @@
 .footer__copyright {
-    margin: 48px 20px 36px;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 282px;
     font-family: 'Inter', 'Arial', sans-serif;
     font-weight: normal;
     font-size: 14px;
-    line-height: 17px; 
+    line-height: 17px;
     color: #545454;
 }
 
-/*
-@media (min-width: 750px) {
-    .footer__copyright {}
-} */
+
+@media (min-width: 650px) {
+    .footer__copyright {
+        max-width: 580px;
+    }
+}
