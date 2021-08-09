@@ -15,3 +15,9 @@
         max-width: 580px;
     }
 }
+
+@media (min-width: 920px) {
+    .footer__copyright {
+        max-width: 880px;
+    }
+}
