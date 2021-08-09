@@ -15,3 +15,9 @@
         gap: 20px 16px;
     }
 }
+
+@media (min-width: 920px) {
+    .elements {
+        grid-template-columns: repeat(3, 282px);
+    }
+}
