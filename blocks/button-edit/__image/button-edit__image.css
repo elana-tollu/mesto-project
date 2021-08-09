@@ -6,7 +6,6 @@
 
 @media (min-width: 650px) {
     .button-edit__image {
-        margin: 6px 4px 4px 6px;
         width: 12px;
         height: 12px;
     }
