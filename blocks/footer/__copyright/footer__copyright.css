@@ -16,7 +16,7 @@
     }
 }
 
-@media (min-width: 920px) {
+@media (min-width: 950px) {
     .footer__copyright {
         max-width: 880px;
     }

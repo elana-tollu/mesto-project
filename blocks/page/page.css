@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: silver;
+    background-color: #000000;
     min-width: 320px;
     width: 100%;
  }

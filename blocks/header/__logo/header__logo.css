@@ -1,13 +1,19 @@
 .header__logo {
+    margin: 28px 28px 32px 28px;
     width: 104px;
     height: 24px;
 }
 
-/* 
-@media (min-width: 640px) {
+@media (min-width: 650px) {
     .header__logo {
+        margin: 28px 28px 32px 0;
+    }
+}
+
+@media (min-width: 950px) {
+    .header__logo {
+        margin: 44px 28px 40px 0;
         width: 142px;
         height: 33px;
     }
 }
-*/
