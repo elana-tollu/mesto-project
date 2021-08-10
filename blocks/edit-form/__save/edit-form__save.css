@@ -11,6 +11,12 @@
     font-size: 14px;
     line-height: 17px;
     color: #FFF;
+    cursor: pointer;
+    transition: opacity 1s ease;
+}
+
+.edit-form__save:hover {
+    opacity: 0.5;
 }
 
 @media (min-width: 650px) {
