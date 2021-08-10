@@ -18,6 +18,15 @@
 @import url(../blocks/button-add/button-add.css);
 @import url(../blocks/button-add/__image/button-add__image.css);
 
+@import url(../blocks/edit-form/edit-form.css);
+@import url(../blocks/button-close/button-close.css);
+@import url(../blocks/button-close/__image/button-close__image.css);
+@import url(../blocks/edit-form/__window/edit-form__window.css);
+@import url(../blocks/edit-form/__title/edit-form__title.css);
+@import url(../blocks/edit-form/__name/edit-form__name.css);
+@import url(../blocks/edit-form/__description/edit-form__description.css);
+@import url(../blocks/edit-form/__save/edit-form__save.css);
+
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/element/element.css);
 @import url(../blocks/element/__image/element__image.css);

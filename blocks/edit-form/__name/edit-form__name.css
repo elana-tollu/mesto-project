@@ -1,0 +1,17 @@
+.edit-form__name {
+    margin: 76px 22px 0 22px;
+    padding: 0;
+    font-family: 'Inter', 'Arial', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+@media (min-width: 650px) {
+    .edit-form__name {
+        margin: 54px 36px 0 36px;
+        padding-bottom: 12px;
+        width: 358px;
+        border-bottom: 1px solid #000000;
+    }
+}

@@ -1,0 +1,20 @@
+.edit-form__window {
+    margin: 0 auto;
+    padding: 0;
+    width: 282px;
+    height: 322px;
+    border-radius: 10px;
+    position: relative;
+    z-index: 5;
+    background-color: #FFFFFF;
+    opacity: 1;
+}
+
+
+@media (min-width: 650px) {
+    .edit-form__window {
+        width: 430px;
+        height: 330px;
+    }
+}
+

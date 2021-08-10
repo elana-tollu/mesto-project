@@ -1,0 +1,22 @@
+.button-close {
+    margin: 0;
+    padding: 0;
+    border: none;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: -36px;
+    left: 262px;
+    z-index: 5;
+    background-color: #000;
+    color: white;
+}
+
+@media (min-width: 650px) {
+    .button-close {
+        width: 32px;
+        height: 32px;
+        top: -40px;
+        left: 438px;
+    }
+}

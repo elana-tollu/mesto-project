@@ -1,5 +1,6 @@
 .profile {
     padding: 40px 20px 0 20px;
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
