@@ -1,4 +1,4 @@
-.button-close {
+.edit-form__button-close {
     margin: 0;
     padding: 0;
     border: none;
@@ -14,12 +14,12 @@
     transition: opacity 1s ease;
 }
 
-.button-close:hover {
+.edit-form__button-close:hover {
     opacity: 0.5;
 }
 
 @media (min-width: 650px) {
-    .button-close {
+    .edit-form__button-close {
         width: 32px;
         height: 32px;
         top: -40px;
