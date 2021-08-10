@@ -7,6 +7,12 @@
     box-sizing: border-box;
     background-color: #000;
     align-self: center;
+    cursor: pointer;
+    transition: opacity 1s ease;
+}
+
+.button-edit:hover {
+    opacity: 0.5;
 }
 
 @media (min-width: 650px) {
