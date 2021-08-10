@@ -10,6 +10,12 @@
     z-index: 5;
     background-color: #000;
     color: white;
+    cursor: pointer;
+    transition: opacity 1s ease;
+}
+
+.button-close:hover {
+    opacity: 0.5;
 }
 
 @media (min-width: 650px) {
