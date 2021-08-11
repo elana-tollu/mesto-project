@@ -1,4 +1,4 @@
-.edit-form__title {
+.popup__title {
     margin: 0 22px;
     padding: 5px 0 0 0;
     font-family: 'Inter', 'Arial', sans-serif;
@@ -8,8 +8,9 @@
 }
 
 @media (min-width: 650px) {
-    .edit-form__title {
+    .popup__title {
         margin: 0 36px;
+        padding: 0;
         font-family: 'Inter', 'Arial', sans-serif;
         font-weight: 900;
         font-size: 24px;

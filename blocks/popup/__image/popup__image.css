@@ -1,13 +1,12 @@
-.edit-form__image {
+.popup__image {
     width: 20px;
     height: 20px;
     color: white;
 }
 
 @media (min-width: 650px) {
-    .edit-form__image {
+    .popup__image {
         width: 32px;
         height: 32px;
     }
 }
-

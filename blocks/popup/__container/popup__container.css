@@ -1,4 +1,4 @@
-.edit-form__window {
+.popup__container {
     margin: 0 auto;
     padding: 0;
     width: 282px;
@@ -12,9 +12,8 @@
 
 
 @media (min-width: 650px) {
-    .edit-form__window {
+    .popup__container {
         width: 430px;
         height: 330px;
     }
 }
-

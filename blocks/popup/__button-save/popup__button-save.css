@@ -1,5 +1,5 @@
-.edit-form__save {
-    margin: 58px 22px 25px;
+.popup__button-save {
+    margin: 44px 22px 25px;
     padding: 0;
     border: none;
     border-radius: 2px;
@@ -15,12 +15,12 @@
     transition: opacity 1s ease;
 }
 
-.edit-form__save:hover {
+.popup__button-save:hover {
     opacity: 0.5;
 }
 
 @media (min-width: 650px) {
-    .edit-form__save {
+    .popup__button-save {
         margin: 48px 36px 36px 36px;
         width: 358px;
         height: 50px;

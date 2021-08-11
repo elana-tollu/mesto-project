@@ -1,20 +1,19 @@
 .header {
     padding: 0;
     background-color: #000;
-    min-width: 320px;
-    max-width: 1280px;
+    max-width: 320px;
     width: 100%;
     border-bottom: 1px solid #545454;
 }
 
 @media (min-width: 650px) {
     .header {
-        width: 580px;
+        max-width: 580px;
     }
 }
 
 @media (min-width: 950px) {
     .header {
-        width: 880px;
+        max-width: 880px;
     }
 }

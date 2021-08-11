@@ -26,20 +26,20 @@
                 <p class="profile__description">Исследователь океана</p>
             </div>
             <button class="button-add"><svg class="button-add__image" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 7.111H8.889V0H7.11v7.111H0V8.89h7.111V16H8.89V8.889H16V7.11z" fill="#fff"/></svg></button>
+        </section>
 
-            <div class="edit-form">
-                <div class="edit-form__window">
-                    <button class="edit-form__button-close"><svg class="edit-form__image" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <form class="popup popup_opened">
+            <div class="popup__overlay"></div>
+            <div class="popup__container">
+                <button class="popup__button-close"><svg class="popup__image" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M20 18L12 10L20 2L18 0L10 8L2 0L0 2L8 10L0 18L2 20L10 12L18 20L20 18Z" fill="white"/>
                     </svg></button>
-                    <h2 class="edit-form__title">Редактировать профиль</h2>
-                    <p class="edit-form__name">Жак-Ив Кусто</p>
-                    <p class="edit-form__description">Исследователь океана</p>
-                    <button class="edit-form__save">Сохранить</button>
-                </div>
+                <p class="popup__title">Редактировать профиль</p>
+                <input type="text" class="popup__name">
+                <input type="text" class="popup__description">
+                <button class="popup__button-save">Сохранить</button>
             </div>
-
-        </section>
+        </form>
 
         <section class="page__section">
             <ul class="elements">
