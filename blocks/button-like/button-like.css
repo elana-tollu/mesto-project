@@ -1,6 +1,12 @@
 .button-like {
     margin: 0;
     padding: 0;
+    width: 22px;
+    height: 19px;
+    background-image: url(../../images/like_disabled.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
     border: none;
     background-color: #FFFFFF;
     cursor: pointer;
