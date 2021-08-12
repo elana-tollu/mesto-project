@@ -7,18 +7,24 @@
     font-weight: normal;
     color: #FFFFFF;
     text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 272px;
 }
 
 @media (min-width: 650px) {
     .profile__description {
-        margin: 10px 0 24px 0;
+        margin: 10px auto 24px auto;
         font-size: 18px;
         line-height: 22px;
+        max-width: 400px;
     }
 }
 
 @media (min-width: 950px) {
     .profile__description {
+        margin-left: 0;
         text-align: left;
     }
 }

@@ -7,6 +7,11 @@
     font-weight: 500;
     color: #FFFFFF;
     text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 232px;
+    max-height: 28px;
 }
 
 @media (min-width: 650px) {
@@ -14,5 +19,7 @@
         margin-right: 18px;
         font-size: 42px;
         line-height: 48px;
+        max-width: 400px;
+        max-height: 40px;
     }
 }
