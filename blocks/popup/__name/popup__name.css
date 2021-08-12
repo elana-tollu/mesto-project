@@ -8,9 +8,6 @@
     line-height: 17px;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, .2);
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
 }
 
 @media (min-width: 650px) {
