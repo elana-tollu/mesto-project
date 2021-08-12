@@ -28,6 +28,7 @@
 @import url(../blocks/popup/__button-save/popup__button-save.css);
 
 @import url(../blocks/elements/elements.css);
+@import url(../blocks/elements-list/elements-list.css);
 @import url(../blocks/element/element.css);
 @import url(../blocks/element/__image/element__image.css);
 @import url(../blocks/element/__title/element__title.css);
