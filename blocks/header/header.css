@@ -3,7 +3,7 @@
     background-color: #000;
     max-width: 320px;
     width: 100%;
-    border-bottom: 1px solid #545454;
+    border-bottom: 1px solid rgba(84, 84, 84, .7);
 }
 
 @media (min-width: 650px) {
