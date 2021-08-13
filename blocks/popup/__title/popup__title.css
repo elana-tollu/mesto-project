@@ -1,6 +1,6 @@
 .popup__title {
     margin: 0 22px;
-    padding: 5px 0 0 0;
+    padding: 25px 0 0 0;
     font-family: 'Inter', 'Arial', sans-serif;
     font-weight: 900;
     font-size: 18px;
@@ -10,7 +10,7 @@
 @media (min-width: 650px) {
     .popup__title {
         margin: 0 36px;
-        padding: 0;
+        padding-top: 34px;
         font-size: 24px;
         line-height: 29px;
     }

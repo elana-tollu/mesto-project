@@ -1,4 +1,4 @@
-.popup__name {
+.popup__form-field {
     margin: 68px 22px 0 22px;
     padding-bottom: 12px;
     width: 238px;
@@ -10,9 +10,17 @@
     border-bottom: 1px solid rgba(0, 0, 0, .2);
 }
 
+.popup__form-field:last-of-type {
+    margin-top: 28px;
+}
+
 @media (min-width: 650px) {
-    .popup__name {
+    .popup__form-field {
         margin: 42px 36px 0 36px;
         width: 358px;
+    }
+
+    .popup__form-field:last-of-type {
+        margin-top: 26px;
     }
 }

@@ -8,9 +8,9 @@
     border: none;
     width: 20px;
     height: 20px;
-    position: relative;
+    position: absolute;
     top: -36px;
-    left: 262px;
+    right: 0;
     z-index: 5;
     background-color: transparent;
     color: white;
@@ -19,7 +19,7 @@
 }
 
 .popup__button-close:hover {
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 @media (min-width: 650px) {
@@ -27,6 +27,6 @@
         width: 32px;
         height: 32px;
         top: -40px;
-        left: 438px;
+        right: -40px;
     }
 }

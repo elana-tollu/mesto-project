@@ -26,16 +26,18 @@
             <button type="button" class="button-add"></button>
         </section>
 
-        <form class="popup popup_opened">
+        <div class="popup popup_opened">
             <div class="popup__overlay"></div>
             <div class="popup__container">
                 <button type="button" class="popup__button-close"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <input type="text" class="popup__name" placeholder="Имя">
-                <input type="text" class="popup__description" placeholder="О себе">
-                <button type="button" class="popup__button-save">Сохранить</button>
+                <form name="user-info" class="popup__form">
+                    <input type="text" name="user-name" class="popup__form-field" placeholder="Имя">
+                    <input type="text" name="user-description" class="popup__form-field" placeholder="О себе">
+                    <button type="button" class="popup__button-save">Сохранить</button>
+                </form>
             </div>
-        </form>
+        </div>
 
         <section class="elements page__section">
             <ul class="elements-list">
