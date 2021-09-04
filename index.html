@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Элана Толлю">
+  <link rel="icon" href="favicon.png">
   <link rel="stylesheet" href="./pages/index.css">
   <title>Место</title>
 </head>
@@ -26,7 +27,7 @@
             <button type="button" class="button-add"></button>
         </section>
 
-        <div class="popup popup_opened">
+        <div class="popup">
             <div class="popup__overlay"></div>
             <div class="popup__container">
                 <button type="button" class="popup__button-close"></button>
@@ -96,4 +97,30 @@
     <footer class="footer page__section">
         <p class="footer__copyright">&copy; 2021 Элана Толлю</p>
     </footer>
+
+    <script>
+        function showEditProfile () {
+            // Найти элемент popup
+            let popup = document.querySelector('.popup');
+
+            // Присвоить модификатор элементу popup
+            popup.classList.add('popup_opened');
+        }
+
+        function saveProfile() {
+            console.log('saveProfile')
+        }
+
+        // Найти кнопку class="button-edit"
+        let buttonEdit = document.querySelector('.button-edit');
+        // Прицепить на кнопку listener  // При клике на карандаш вызывается функция showEditProfile
+        buttonEdit.addEventListener('click', showEditProfile);
+
+        // Найти кнопку class="popup__button-save"
+        let popupButtonSave = document.querySelector('.popup__button-save');
+        // Прицепить на кнопку listener
+        popupButtonSave.addEventListener('click', saveProfile);
+    </script>
+
+    <script src="index.js"></script>
 </body>
