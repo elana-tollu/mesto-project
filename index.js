@@ -1,34 +1,30 @@
 function initButtons() {
-    // Найти кнопку class="button-edit"
-    let buttonEdit = document.querySelector('.button-edit');
-    // Прицепить на кнопку listener  // При клике на карандаш вызывается функция showEditProfile
-    buttonEdit.addEventListener('click', editProfileShow);
+    let buttonEdit = document.querySelector('.button-edit');  // Найти кнопку с карандашом
+    buttonEdit.addEventListener('click', editProfileShow);  // Прицепить на кнопку listener  // При клике на карандаш вызывается функция showEditProfile
 
-    let popupButtonSave = document.querySelector('.popup__button-save');
-    popupButtonSave.addEventListener('click', editProfileSave);
+    let editProfileForm = document.querySelector('#edit-profile');  // Найти форму редактирования профиля
+    editProfileForm.addEventListener('submit', editProfileSave);  // Прицепить обработчик на submit
 
     let popupButtonCancel = document.querySelector('.popup__button-close');
     popupButtonCancel.addEventListener('click', editProfileCancel);
 }
 
 function editProfileShow() {
-    // Найти элемент popup
-    let popup = document.querySelector('.popup');
-
-    // Присвоить модификатор элементу popup
-    popup.classList.add('popup_opened');
+    let popup = document.querySelector('.popup');  // Найти элемент popup
+    popup.classList.add('popup_opened');      // Присвоить модификатор элементу popup
 }
 
-function editProfileSave() {
+function editProfileSave(submitEvent) {
+    submitEvent.preventDefault();  // Не отправлять форму на сервер и не перезагружать страницу
+    let popup = document.querySelector('.popup');  // Найти элемент popup
+    popup.classList.remove('popup_opened');  // Закрыть popup
     console.log('saveProfile')
 }
 
 function editProfileCancel() {
     let popup = document.querySelector('.popup');
-
-    // Присвоить модификатор элементу popup
     popup.classList.remove('popup_opened');
 }
 
-initButtons();
+initButtons(); // При загрузке скрипта инициализировать кнопки
 
