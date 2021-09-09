@@ -22,6 +22,12 @@ function initButtons() {
 function editProfileShow() {
     let popup = document.querySelector('.popup');  // Найти элемент popup
     popup.classList.add('popup_opened');      // Присвоить модификатор элементу popup
+    let profileForm = document.forms['edit-profile'];
+    let profileInfo = document.querySelector('.profile__info');
+    let currentUserName = profileInfo.querySelector('.profile__name').textContent;
+    let currentProfileDescription = profileInfo.querySelector('.profile__description').textContent;
+    profileForm.elements['user-name'].value = currentUserName;
+    profileForm.elements['user-description'].value = currentProfileDescription;
 }
 
 function editProfileSave(submitEvent) {
