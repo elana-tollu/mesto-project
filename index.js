@@ -53,7 +53,17 @@ function showAddItem() {
     popup.classList.add('popup_opened');      // Присвоить модификатор элементу popup
 }
 
-function saveAddItem() {}
+function saveAddItem(submitEvent) {
+    submitEvent.preventDefault();  // Не отправлять форму на сервер и не перезагружать страницу
+    let itemForm = submitEvent.target;
+    let card = {
+        name: itemForm.elements['item-name'].value,
+        link: itemForm.elements['item-link'].value
+    }
+    addItem(card);
+    let popup = document.querySelector('.popup_add-item');  // Найти элемент popup
+    popup.classList.remove('popup_opened');  // Закрыть popup
+}
 
 function cancelAddItem() {
     let popup = document.querySelector('.popup_add-item');
