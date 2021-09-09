@@ -8,7 +8,6 @@ function initButtons() {
     let popupButtonCancel = document.querySelector('.popup__button-close');
     popupButtonCancel.addEventListener('click', editProfileCancel);
 
-
     let buttonAdd = document.querySelector('.button-add');  // Найти кнопку с +
     buttonAdd.addEventListener('click', showAddItem);  // Прицепить listener
 
@@ -81,6 +80,13 @@ function addItem(card) {
     </li>`;
     let elements = document.querySelector('.elements__list');
     elements.insertAdjacentHTML('afterbegin', item);
+    let insertedItem = elements.children[0];
+    let buttonLike = insertedItem.querySelector('.button-like');
+    buttonLike.addEventListener('click', toggleLike);
+}
+
+function toggleLike(clickEvent) {
+     clickEvent.target.classList.toggle('button-like_active');
 }
 
 function initContent() {
