@@ -60,6 +60,7 @@ function saveAddItem(submitEvent) {
         link: itemForm.elements['item-link'].value
     }
     addItem(card);
+    itemForm.reset();
     let popup = document.querySelector('.popup_add-item');  // Найти элемент popup
     popup.classList.remove('popup_opened');  // Закрыть popup
 }
