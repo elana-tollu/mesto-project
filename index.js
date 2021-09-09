@@ -32,9 +32,14 @@ function editProfileShow() {
 
 function editProfileSave(submitEvent) {
     submitEvent.preventDefault();  // Не отправлять форму на сервер и не перезагружать страницу
+    let profileForm = submitEvent.target;
+    let newUserName = profileForm.elements['user-name'].value;
+    let newProfileDescription = profileForm.elements['user-description'].value;// найти инпуты, взять данные из инпутов
+    let profileInfo = document.querySelector('.profile__info');
+    profileInfo.querySelector('.profile__name').textContent = newUserName; // найти элементы профиля и задать текстовое содержимое элементам на странице
+    profileInfo.querySelector('.profile__description').textContent = newProfileDescription;
     let popup = document.querySelector('.popup');  // Найти элемент popup
     popup.classList.remove('popup_opened');  // Закрыть popup
-    console.log('saveProfile')
 }
 
 function editProfileCancel() {
