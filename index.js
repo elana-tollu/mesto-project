@@ -49,5 +49,49 @@ function cancelAddItem() {
     popup.classList.remove('popup_opened');
 }
 
+function addItem(card) {
+    let item = `<li class="element">
+        <button type="button" class="element__button-trash"></button>
+        <img src="${card.link}" alt="${card.name}" class="element__image">
+        <div class="element__title">
+            <h2 class="element__name">${card.name}</h2>
+            <button type="button" class="button-like"></button>
+        </div>
+    </li>`;
+    let elements = document.querySelector('.elements__list');
+    elements.insertAdjacentHTML('afterbegin', item);
+}
+
+function initContent() {
+    const initialCards = [
+        {
+          name: 'Архыз',
+          link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+        },
+        {
+          name: 'Челябинская область',
+          link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+        },
+        {
+          name: 'Иваново',
+          link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+        },
+        {
+          name: 'Камчатка',
+          link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+        },
+        {
+          name: 'Холмогорский район',
+          link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+        },
+        {
+          name: 'Байкал',
+          link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+        }
+        ];
+        initialCards.forEach(addItem);
+}
+
 initButtons(); // При загрузке скрипта инициализировать кнопки
+initContent();
 
