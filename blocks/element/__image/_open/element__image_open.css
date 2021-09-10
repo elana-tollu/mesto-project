@@ -1,4 +1,8 @@
 .element__image_open {
+    width: initial;
+    height: initial;
+    max-width: 75vw;
+    max-height: 75vh;
     border-radius: 0;
     object-fit: contain;
 }
