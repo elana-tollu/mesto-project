@@ -16,11 +16,14 @@ function initButtons() {
 
     let addItemButtonCancel = document.querySelector('.popup__button-close_add-item');
     addItemButtonCancel.addEventListener('click', cancelAddItem);
+
+    let popupImageButtonClose = document.querySelector('.popup__button-close_image');
+    popupImageButtonClose.addEventListener('click', closePopupImage);
 }
 
 function editProfileShow() {
     let popup = document.querySelector('.popup');  // Найти элемент popup
-    popup.classList.add('popup_opened');      // Присвоить модификатор элементу popup
+    popup.classList.add('popup_opened');      // Открыть popup
     let profileForm = document.forms['edit-profile'];
     let profileInfo = document.querySelector('.profile__info');
     let currentUserName = profileInfo.querySelector('.profile__name').textContent;
@@ -86,6 +89,8 @@ function addItem(card) {
     buttonLike.addEventListener('click', toggleLike);
     let buttonTrash = insertedItem.querySelector('.element__button-trash');
     buttonTrash.addEventListener('click', deleteItem);
+    let image = insertedItem.querySelector('.element__image');
+    image.addEventListener('click', openImage);
 }
 
 function toggleLike(clickEvent) {
@@ -96,6 +101,26 @@ function deleteItem(clickEvent) {
     let buttonTrash = clickEvent.target;
     let item = buttonTrash.closest('.element');
     item.remove();
+}
+
+function openImage (clickEvent) {
+    let cardImage = clickEvent.target;
+    let popupImage = `<img src="${cardImage.src}" alt="${cardImage.alt}" class="element__image element__image_open">`;
+    let popupTitle = `<h2 class="element__name element__name_open">${cardImage.alt}</h2>`
+    let popup = document.querySelector('.popup_image');
+    let popupContainer = popup.querySelector('.popup__container_image');
+    popupContainer.insertAdjacentHTML('beforeend', popupImage);
+    popupContainer.insertAdjacentHTML('beforeend', popupTitle);
+    popup.classList.add('popup_opened');
+}
+
+function closePopupImage() {
+    let popup = document.querySelector('.popup_image');
+    popup.classList.remove('popup_opened');
+    let popupImage = popup.querySelector('img');
+    let popupTitle = popup.querySelector('h2');
+    popupImage.remove();
+    popupTitle.remove();
 }
 
 function initContent() {

@@ -1,0 +1,4 @@
+.element__image_open {
+    border-radius: 0;
+    object-fit: contain;
+}
