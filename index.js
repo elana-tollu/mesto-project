@@ -79,15 +79,23 @@ function addItem(card) {
             <button type="button" class="button-like"></button>
         </div>
     </li>`;
-    let elements = document.querySelector('.elements__list');
-    elements.insertAdjacentHTML('afterbegin', item);
-    let insertedItem = elements.children[0];
+    let elements = document.querySelector('.elements__list'); // найти контейнер карточек
+    elements.insertAdjacentHTML('afterbegin', item); // добавить карточку в начало контейнера
+    let insertedItem = elements.children[0]; // взять свежесозданную карточку - узел ДОМ
     let buttonLike = insertedItem.querySelector('.button-like');
     buttonLike.addEventListener('click', toggleLike);
+    let buttonTrash = insertedItem.querySelector('.element__button-trash');
+    buttonTrash.addEventListener('click', deleteItem);
 }
 
 function toggleLike(clickEvent) {
-     clickEvent.target.classList.toggle('button-like_active');
+    clickEvent.target.classList.toggle('button-like_active');
+}
+
+function deleteItem(clickEvent) {
+    let buttonTrash = clickEvent.target;
+    let item = buttonTrash.closest('.element');
+    item.remove();
 }
 
 function initContent() {
