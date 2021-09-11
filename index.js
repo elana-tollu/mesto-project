@@ -1,80 +1,80 @@
 function initButtons() {
-    let buttonEdit = document.querySelector('.button-edit');  // Найти кнопку с карандашом
+    const buttonEdit = document.querySelector('.button-edit');  // Найти кнопку с карандашом
     buttonEdit.addEventListener('click', editProfileShow);  // Прицепить listener
 
-    let editProfileForm = document.querySelector('#edit-profile');  // Найти форму редактирования профиля
+    const editProfileForm = document.querySelector('#edit-profile');  // Найти форму редактирования профиля
     editProfileForm.addEventListener('submit', editProfileSave);  // Прицепить обработчик на submit
 
-    let popupButtonCancel = document.querySelector('.popup__button-close');
+    const popupButtonCancel = document.querySelector('.popup__button-close');
     popupButtonCancel.addEventListener('click', editProfileCancel);
 
-    let buttonAdd = document.querySelector('.button-add');  // Найти кнопку с +
+    const buttonAdd = document.querySelector('.button-add');  // Найти кнопку с +
     buttonAdd.addEventListener('click', showAddItem);  // Прицепить listener
 
-    let addItemForm = document.querySelector('#add-item');
+    const addItemForm = document.querySelector('#add-item');
     addItemForm.addEventListener('submit', saveAddItem);
 
-    let addItemButtonCancel = document.querySelector('.popup__button-close_add-item');
+    const addItemButtonCancel = document.querySelector('.popup__button-close_add-item');
     addItemButtonCancel.addEventListener('click', cancelAddItem);
 
-    let popupImageButtonClose = document.querySelector('.popup__button-close_image');
+    const popupImageButtonClose = document.querySelector('.popup__button-close_image');
     popupImageButtonClose.addEventListener('click', closePopupImage);
 }
 
 function editProfileShow() {
-    let popup = document.querySelector('.popup');  // Найти элемент popup
+    const popup = document.querySelector('.popup');  // Найти элемент popup
     popup.classList.add('popup_opened');      // Открыть popup
-    let profileForm = document.forms['edit-profile'];
-    let profileInfo = document.querySelector('.profile__info');
-    let currentUserName = profileInfo.querySelector('.profile__name').textContent;
-    let currentProfileDescription = profileInfo.querySelector('.profile__description').textContent;
+    const profileForm = document.forms['edit-profile'];
+    const profileInfo = document.querySelector('.profile__info');
+    const currentUserName = profileInfo.querySelector('.profile__name').textContent;
+    const currentProfileDescription = profileInfo.querySelector('.profile__description').textContent;
     profileForm.elements['user-name'].value = currentUserName;
     profileForm.elements['user-description'].value = currentProfileDescription;
 }
 
 function editProfileSave(submitEvent) {
     submitEvent.preventDefault();  // Не отправлять форму на сервер и не перезагружать страницу
-    let profileForm = submitEvent.target;
-    let newUserName = profileForm.elements['user-name'].value;
-    let newProfileDescription = profileForm.elements['user-description'].value;// найти инпуты, взять данные из инпутов
-    let profileInfo = document.querySelector('.profile__info');
+    const profileForm = submitEvent.target;
+    const newUserName = profileForm.elements['user-name'].value;
+    const newProfileDescription = profileForm.elements['user-description'].value;// найти инпуты, взять данные из инпутов
+    const profileInfo = document.querySelector('.profile__info');
     profileInfo.querySelector('.profile__name').textContent = newUserName; // найти элементы профиля и задать текстовое содержимое элементам на странице
     profileInfo.querySelector('.profile__description').textContent = newProfileDescription;
-    let popup = document.querySelector('.popup');  // Найти элемент popup
+    const popup = document.querySelector('.popup');  // Найти элемент popup
     popup.classList.remove('popup_opened');  // Закрыть popup
 }
 
 function editProfileCancel() {
-    let popup = document.querySelector('.popup');
+    const popup = document.querySelector('.popup');
     popup.classList.remove('popup_opened');
 }
 
 
 function showAddItem() {
-    let popup = document.querySelector('.popup_add-item');  // Найти элемент popup
+    const popup = document.querySelector('.popup_add-item');  // Найти элемент popup
     popup.classList.add('popup_opened');      // Присвоить модификатор элементу popup
 }
 
 function saveAddItem(submitEvent) {
     submitEvent.preventDefault();  // Не отправлять форму на сервер и не перезагружать страницу
-    let itemForm = submitEvent.target;
-    let card = {
+    const itemForm = submitEvent.target;
+    const card = {
         name: itemForm.elements['item-name'].value,
         link: itemForm.elements['item-link'].value
     }
     addItem(card);
     itemForm.reset();
-    let popup = document.querySelector('.popup_add-item');  // Найти элемент popup
+    const popup = document.querySelector('.popup_add-item');  // Найти элемент popup
     popup.classList.remove('popup_opened');  // Закрыть popup
 }
 
 function cancelAddItem() {
-    let popup = document.querySelector('.popup_add-item');
+    const popup = document.querySelector('.popup_add-item');
     popup.classList.remove('popup_opened');
 }
 
 function addItem(card) {
-    let item = `<li class="element">
+    const item = `<li class="element">
         <button type="button" class="element__button-trash"></button>
         <img src="${card.link}" alt="${card.name}" class="element__image">
         <div class="element__title">
@@ -82,14 +82,14 @@ function addItem(card) {
             <button type="button" class="button-like"></button>
         </div>
     </li>`;
-    let elements = document.querySelector('.elements__list'); // найти контейнер карточек
+    const elements = document.querySelector('.elements__list'); // найти контейнер карточек
     elements.insertAdjacentHTML('afterbegin', item); // добавить карточку в начало контейнера
-    let insertedItem = elements.children[0]; // взять свежесозданную карточку - узел ДОМ
-    let buttonLike = insertedItem.querySelector('.button-like');
+    const insertedItem = elements.children[0]; // взять свежесозданную карточку - узел ДОМ
+    const buttonLike = insertedItem.querySelector('.button-like');
     buttonLike.addEventListener('click', toggleLike);
-    let buttonTrash = insertedItem.querySelector('.element__button-trash');
+    const buttonTrash = insertedItem.querySelector('.element__button-trash');
     buttonTrash.addEventListener('click', deleteItem);
-    let image = insertedItem.querySelector('.element__image');
+    const image = insertedItem.querySelector('.element__image');
     image.addEventListener('click', openImage);
 }
 
@@ -98,26 +98,26 @@ function toggleLike(clickEvent) {
 }
 
 function deleteItem(clickEvent) {
-    let buttonTrash = clickEvent.target;
-    let item = buttonTrash.closest('.element');
+    const buttonTrash = clickEvent.target;
+    const item = buttonTrash.closest('.element');
     item.remove();
 }
 
 function openImage (clickEvent) {
-    let popup = document.querySelector('.popup_image');
+    const popup = document.querySelector('.popup_image');
     popup.querySelectorAll('img').forEach(element => element.remove());
     popup.querySelectorAll('h2').forEach(element => element.remove());
-    let cardImage = clickEvent.target;
-    let popupImage = `<img src="${cardImage.src}" alt="${cardImage.alt}" class="element__image element__image_open">`;
-    let popupTitle = `<h2 class="element__name element__name_open">${cardImage.alt}</h2>`
-    let popupContainer = popup.querySelector('.popup__container_image');
+    const cardImage = clickEvent.target;
+    const popupImage = `<img src="${cardImage.src}" alt="${cardImage.alt}" class="element__image element__image_open">`;
+    const popupTitle = `<h2 class="element__name element__name_open">${cardImage.alt}</h2>`
+    const popupContainer = popup.querySelector('.popup__container_image');
     popupContainer.insertAdjacentHTML('beforeend', popupImage);
     popupContainer.insertAdjacentHTML('beforeend', popupTitle);
     popup.classList.add('popup_opened');
 }
 
 function closePopupImage() {
-    let popup = document.querySelector('.popup_image');
+    const popup = document.querySelector('.popup_image');
     popup.classList.remove('popup_opened');
 }
 
