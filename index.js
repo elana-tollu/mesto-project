@@ -1,5 +1,6 @@
 const popupProfile = document.querySelector('.popup');  // Найти элемент popup
 const popupAddItem = document.querySelector('.popup_add-item');  // Найти элемент popup
+const popupItem = document.querySelector('.popup_image');
 
 function initButtons() {
     const buttonEdit = document.querySelector('.button-edit');  // Найти кнопку с карандашом
@@ -102,21 +103,19 @@ function deleteItem(clickEvent) {
 }
 
 function openImage (clickEvent) {
-    const popup = document.querySelector('.popup_image');
-    popup.querySelectorAll('img').forEach(element => element.remove());
-    popup.querySelectorAll('h2').forEach(element => element.remove());
+    popupItem.querySelectorAll('img').forEach(element => element.remove());
+    popupItem.querySelectorAll('h2').forEach(element => element.remove());
     const cardImage = clickEvent.target;
     const popupImage = `<img src="${cardImage.src}" alt="${cardImage.alt}" class="element__image element__image_open">`;
     const popupTitle = `<h2 class="element__name element__name_open">${cardImage.alt}</h2>`
-    const popupContainer = popup.querySelector('.popup__container_image');
+    const popupContainer = popupItem.querySelector('.popup__container_image');
     popupContainer.insertAdjacentHTML('beforeend', popupImage);
     popupContainer.insertAdjacentHTML('beforeend', popupTitle);
-    popup.classList.add('popup_opened');
+    popupItem.classList.add('popup_opened');
 }
 
 function closePopupImage() {
-    const popup = document.querySelector('.popup_image');
-    popup.classList.remove('popup_opened');
+    popupItem.classList.remove('popup_opened');
 }
 
 function initContent() {
