@@ -101,24 +101,40 @@ function cancelAddItem() {
     popupAddItem.classList.remove('popup_opened');
 }
 
-function addItem(card) {
-    const item = `<li class="element">
-        <button type="button" class="element__button-trash"></button>
-        <img src="${card.link}" alt="${card.name}" class="element__image">
-        <div class="element__title">
-            <h2 class="element__name">${card.name}</h2>
-            <button type="button" class="button-like"></button>
-        </div>
-    </li>`;
-    const elements = document.querySelector('.elements__list'); // найти контейнер карточек
-    elements.insertAdjacentHTML('afterbegin', item); // добавить карточку в начало контейнера
-    const insertedItem = elements.children[0]; // взять свежесозданную карточку - узел ДОМ
-    const buttonLike = insertedItem.querySelector('.button-like');
-    buttonLike.addEventListener('click', toggleLike);
-    const buttonTrash = insertedItem.querySelector('.element__button-trash');
-    buttonTrash.addEventListener('click', deleteItem);
-    const image = insertedItem.querySelector('.element__image');
+function renderCard(name, link) {
+    const card = document.createElement('li');
+    card.classList.add('element');
+
+    const trashButton = document.createElement('button');
+    trashButton.classList.add('element__button-trash');
+    trashButton.type = 'button';
+    trashButton.addEventListener('click', deleteItem);
+
+    const image = document.createElement('img');
+    image.classList.add('element__image');
+    image.src = link;
+    image.alt = name;
     image.addEventListener('click', openImage);
+
+    const title = document.createElement('div');
+    title.classList.add('element__title');
+    const heading = document.createElement('h2');
+    heading.classList.add('element__name');
+    heading.append(document.createTextNode(name));
+    const likeButton = document.createElement('button');
+    likeButton.classList.add('button-like');
+    likeButton.type = 'button';
+    likeButton.addEventListener('click', toggleLike);
+    title.append(heading, likeButton);
+
+    card.append(trashButton, image, title);
+
+    return card;
+}
+
+function addItem(card) {
+    const elements = document.querySelector('.elements__list'); // найти контейнер карточек
+    elements.prepend(renderCard(card.name, card.link))
 }
 
 function toggleLike(clickEvent) {
