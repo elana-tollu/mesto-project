@@ -1,17 +1,17 @@
-const popupProfile = document.querySelector('.popup');  // Найти элемент popup
-const popupAddItem = document.querySelector('.popup_add-item');  // Найти элемент popup
+const popupProfile = document.querySelector('.popup');
+const popupAddItem = document.querySelector('.popup_add-item');
 const popupItem = document.querySelector('.popup_image');
 const profileInfo = document.querySelector('.profile__info');
 
 function initButtons() {
     const buttonEdit = document.querySelector('.button-edit');  // Найти кнопку с карандашом
-    buttonEdit.addEventListener('click', editProfileShow);  // Прицепить listener
+    buttonEdit.addEventListener('click', showEditProfile);  // Прицепить listener
 
     const editProfileForm = document.querySelector('#edit-profile');  // Найти форму редактирования профиля
-    editProfileForm.addEventListener('submit', editProfileSave);  // Прицепить обработчик на submit
+    editProfileForm.addEventListener('submit', saveEditProfile);  // Прицепить обработчик на submit
 
     const popupButtonCancel = document.querySelector('.popup__button-close');
-    popupButtonCancel.addEventListener('click', editProfileCancel);
+    popupButtonCancel.addEventListener('click', cancelEditProfile);
 
     const buttonAdd = document.querySelector('.button-add');  // Найти кнопку с +
     buttonAdd.addEventListener('click', showAddItem);  // Прицепить listener
@@ -26,7 +26,37 @@ function initButtons() {
     popupImageButtonClose.addEventListener('click', closePopupImage);
 }
 
-function editProfileShow() {
+function initContent() {
+    const initialCards = [
+        {
+          name: 'Архыз',
+          link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+        },
+        {
+          name: 'Челябинская область',
+          link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+        },
+        {
+          name: 'Иваново',
+          link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+        },
+        {
+          name: 'Камчатка',
+          link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+        },
+        {
+          name: 'Холмогорский район',
+          link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+        },
+        {
+          name: 'Байкал',
+          link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+        }
+        ];
+        initialCards.forEach(addItem);
+}
+
+function showEditProfile() {
     popupProfile.classList.add('popup_opened');      // Открыть popup
     const profileForm = document.forms['edit-profile'];
     const currentUserName = profileInfo.querySelector('.profile__name').textContent;
@@ -35,7 +65,7 @@ function editProfileShow() {
     profileForm.elements['user-description'].value = currentProfileDescription;
 }
 
-function editProfileSave(submitEvent) {
+function saveEditProfile(submitEvent) {
     submitEvent.preventDefault();  // Не отправлять форму на сервер и не перезагружать страницу
     const profileForm = submitEvent.target;
     const newUserName = profileForm.elements['user-name'].value;
@@ -46,7 +76,7 @@ function editProfileSave(submitEvent) {
     popupProfile.classList.remove('popup_opened');  // Закрыть popup
 }
 
-function editProfileCancel() {
+function cancelEditProfile() {
     popupProfile.classList.remove('popup_opened');
 }
 
@@ -117,35 +147,6 @@ function closePopupImage() {
     popupItem.classList.remove('popup_opened');
 }
 
-function initContent() {
-    const initialCards = [
-        {
-          name: 'Архыз',
-          link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-        },
-        {
-          name: 'Челябинская область',
-          link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-        },
-        {
-          name: 'Иваново',
-          link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-        },
-        {
-          name: 'Камчатка',
-          link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-        },
-        {
-          name: 'Холмогорский район',
-          link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-        },
-        {
-          name: 'Байкал',
-          link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-        }
-        ];
-        initialCards.forEach(addItem);
-}
 
 initButtons(); // При загрузке скрипта инициализировать кнопки
 initContent();
