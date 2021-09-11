@@ -1,3 +1,5 @@
+const popupProfile = document.querySelector('.popup');  // Найти элемент popup
+
 function initButtons() {
     const buttonEdit = document.querySelector('.button-edit');  // Найти кнопку с карандашом
     buttonEdit.addEventListener('click', editProfileShow);  // Прицепить listener
@@ -22,8 +24,7 @@ function initButtons() {
 }
 
 function editProfileShow() {
-    const popup = document.querySelector('.popup');  // Найти элемент popup
-    popup.classList.add('popup_opened');      // Открыть popup
+    popupProfile.classList.add('popup_opened');      // Открыть popup
     const profileForm = document.forms['edit-profile'];
     const profileInfo = document.querySelector('.profile__info');
     const currentUserName = profileInfo.querySelector('.profile__name').textContent;
@@ -40,13 +41,12 @@ function editProfileSave(submitEvent) {
     const profileInfo = document.querySelector('.profile__info');
     profileInfo.querySelector('.profile__name').textContent = newUserName; // найти элементы профиля и задать текстовое содержимое элементам на странице
     profileInfo.querySelector('.profile__description').textContent = newProfileDescription;
-    const popup = document.querySelector('.popup');  // Найти элемент popup
-    popup.classList.remove('popup_opened');  // Закрыть popup
+
+    popupProfile.classList.remove('popup_opened');  // Закрыть popup
 }
 
 function editProfileCancel() {
-    const popup = document.querySelector('.popup');
-    popup.classList.remove('popup_opened');
+    popupProfile.classList.remove('popup_opened');
 }
 
 
