@@ -1,4 +1,5 @@
 const popupProfile = document.querySelector('.popup');  // Найти элемент popup
+const popupAddItem = document.querySelector('.popup_add-item');  // Найти элемент popup
 
 function initButtons() {
     const buttonEdit = document.querySelector('.button-edit');  // Найти кнопку с карандашом
@@ -51,8 +52,7 @@ function editProfileCancel() {
 
 
 function showAddItem() {
-    const popup = document.querySelector('.popup_add-item');  // Найти элемент popup
-    popup.classList.add('popup_opened');      // Присвоить модификатор элементу popup
+    popupAddItem.classList.add('popup_opened');      // Присвоить модификатор элементу popup
 }
 
 function saveAddItem(submitEvent) {
@@ -64,13 +64,11 @@ function saveAddItem(submitEvent) {
     }
     addItem(card);
     itemForm.reset();
-    const popup = document.querySelector('.popup_add-item');  // Найти элемент popup
-    popup.classList.remove('popup_opened');  // Закрыть popup
+    popupAddItem.classList.remove('popup_opened');  // Закрыть popup
 }
 
 function cancelAddItem() {
-    const popup = document.querySelector('.popup_add-item');
-    popup.classList.remove('popup_opened');
+    popupAddItem.classList.remove('popup_opened');
 }
 
 function addItem(card) {
