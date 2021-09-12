@@ -60,6 +60,10 @@ function openPopup(popup) {
     popup.classList.add('popup_opened');
 }
 
+function closePopup(popup) {
+    popup.classList.remove('popup_opened');
+}
+
 function showEditProfile() {
     openPopup(popupProfile);
     const profileForm = document.forms['edit-profile'];
@@ -77,11 +81,11 @@ function saveEditProfile(submitEvent) {
     profileInfo.querySelector('.profile__name').textContent = newUserName; // найти элементы профиля и задать текстовое содержимое элементам на странице
     profileInfo.querySelector('.profile__description').textContent = newProfileDescription;
 
-    popupProfile.classList.remove('popup_opened');  // Закрыть popup
+    closePopup(popupProfile);
 }
 
 function cancelEditProfile() {
-    popupProfile.classList.remove('popup_opened');
+    closePopup(popupProfile);
 }
 
 
@@ -98,11 +102,11 @@ function saveAddItem(submitEvent) {
     }
     addItem(card);
     itemForm.reset();
-    popupAddItem.classList.remove('popup_opened');  // Закрыть popup
+    closePopup(popupAddItem);
 }
 
 function cancelAddItem() {
-    popupAddItem.classList.remove('popup_opened');
+    closePopup(popupAddItem);
 }
 
 function renderCard(name, link) {
@@ -164,7 +168,7 @@ function openImage (clickEvent) {
 }
 
 function closePopupImage() {
-    popupItem.classList.remove('popup_opened');
+    closePopup(popupItem);
 }
 
 
