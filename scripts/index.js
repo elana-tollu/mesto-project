@@ -120,14 +120,12 @@ function deleteItem(clickEvent) {
 }
 
 function openImage (clickEvent) {
-    popupItem.querySelectorAll('img').forEach(element => element.remove());
-    popupItem.querySelectorAll('h2').forEach(element => element.remove());
     const cardImage = clickEvent.target;
-    const popupImage = `<img src="${cardImage.src}" alt="${cardImage.alt}" class="element__image element__image_open">`;
-    const popupTitle = `<h2 class="element__name element__name_open">${cardImage.alt}</h2>`
-    const popupContainer = popupItem.querySelector('.popup__container_image');
-    popupContainer.insertAdjacentHTML('beforeend', popupImage);
-    popupContainer.insertAdjacentHTML('beforeend', popupTitle);
+    const popupImage = popupItem.querySelector('.element__image_open');
+    popupImage.src = cardImage.src;
+    popupImage.alt = cardImage.alt;
+    const popupTitle = popupItem.querySelector('.element__name_open');
+    popupTitle.textContent = cardImage.alt;
     openPopup(popupItem);
 }
 
