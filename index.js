@@ -109,7 +109,7 @@ function cancelAddItem() {
     closePopup(popupAddItem);
 }
 
-function createCard(name, link) {
+function createCard(item) {
     const cardTemplate = document.querySelector('#card-template').content;
     const card = cardTemplate.querySelector('.element').cloneNode(true);
 
@@ -117,12 +117,12 @@ function createCard(name, link) {
     trashButton.addEventListener('click', deleteItem);
 
     const image = card.querySelector('.element__image');
-    image.src = link;
-    image.alt = name;
+    image.src = item.link;
+    image.alt = item.name;
     image.addEventListener('click', openImage);
 
     const heading = card.querySelector('.element__name');
-    heading.append(document.createTextNode(name));
+    heading.append(document.createTextNode(item.name));
 
     const likeButton = card.querySelector('.button-like');
     likeButton.addEventListener('click', toggleLike);
@@ -132,7 +132,7 @@ function createCard(name, link) {
 
 function addItem(card) {
     const elements = document.querySelector('.elements__list'); // найти контейнер карточек
-    elements.prepend(createCard(card.name, card.link))
+    elements.prepend(createCard(card))
 }
 
 function toggleLike(clickEvent) {
