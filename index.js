@@ -110,32 +110,22 @@ function cancelAddItem() {
 }
 
 function renderCard(name, link) {
-    const card = document.createElement('li');
-    card.classList.add('element');
+    const cardTemplate = document.querySelector('#card-template').content;
+    const card = cardTemplate.querySelector('.element').cloneNode(true);
 
-    const trashButton = document.createElement('button');
-    trashButton.classList.add('element__button-trash');
-    trashButton.type = 'button';
+    const trashButton = card.querySelector('.element__button-trash');
     trashButton.addEventListener('click', deleteItem);
 
-    const image = document.createElement('img');
-    image.classList.add('element__image');
+    const image = card.querySelector('.element__image');
     image.src = link;
     image.alt = name;
     image.addEventListener('click', openImage);
 
-    const title = document.createElement('div');
-    title.classList.add('element__title');
-    const heading = document.createElement('h2');
-    heading.classList.add('element__name');
+    const heading = card.querySelector('.element__name');
     heading.append(document.createTextNode(name));
-    const likeButton = document.createElement('button');
-    likeButton.classList.add('button-like');
-    likeButton.type = 'button';
-    likeButton.addEventListener('click', toggleLike);
-    title.append(heading, likeButton);
 
-    card.append(trashButton, image, title);
+    const likeButton = card.querySelector('.button-like');
+    likeButton.addEventListener('click', toggleLike);
 
     return card;
 }

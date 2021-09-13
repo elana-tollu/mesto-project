@@ -54,7 +54,19 @@
         </div>
 
         <section class="elements page__section">
-            <ul class="elements__list"></ul>
+            <ul class="elements__list">
+
+                <template id = "card-template">
+                    <li class="element">
+                        <button type="button" class="element__button-trash"></button>
+                        <img class="element__image">
+                        <div class="element__title">
+                            <h2 class="element__name"></h2>
+                            <button type="button" class="button-like"></button>
+                        </div>
+                    </li>
+                </template>
+            </ul>
         </section>
 
         <div class="popup popup_image">
