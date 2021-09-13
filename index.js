@@ -1,4 +1,4 @@
-const popupProfile = document.querySelector('.popup');
+const popupProfile = document.querySelector('.popup_edit-profile');
 const popupAddItem = document.querySelector('.popup_add-item');
 const popupItem = document.querySelector('.popup_image');
 const profileInfo = document.querySelector('.profile__info');
