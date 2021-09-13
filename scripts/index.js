@@ -2,6 +2,7 @@ const popupProfile = document.querySelector('.popup_edit-profile');
 const popupAddItem = document.querySelector('.popup_add-item');
 const popupItem = document.querySelector('.popup_image');
 const profileInfo = document.querySelector('.profile__info');
+const profileForm = document.forms['edit-profile'];
 
 function initButtons() {
     const buttonEdit = document.querySelector('.button-edit');  // Найти кнопку с карандашом
@@ -40,7 +41,6 @@ function closePopup(popup) {
 
 function showEditProfile() {
     openPopup(popupProfile);
-    const profileForm = document.forms['edit-profile'];
     const currentUserName = profileInfo.querySelector('.profile__name').textContent;
     const currentProfileDescription = profileInfo.querySelector('.profile__description').textContent;
     profileForm.elements['user-name'].value = currentUserName;
