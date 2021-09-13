@@ -109,7 +109,7 @@ function cancelAddItem() {
     closePopup(popupAddItem);
 }
 
-function renderCard(name, link) {
+function createCard(name, link) {
     const cardTemplate = document.querySelector('#card-template').content;
     const card = cardTemplate.querySelector('.element').cloneNode(true);
 
@@ -132,7 +132,7 @@ function renderCard(name, link) {
 
 function addItem(card) {
     const elements = document.querySelector('.elements__list'); // найти контейнер карточек
-    elements.prepend(renderCard(card.name, card.link))
+    elements.prepend(createCard(card.name, card.link))
 }
 
 function toggleLike(clickEvent) {
