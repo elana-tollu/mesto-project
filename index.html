@@ -33,8 +33,8 @@
                 <button type="button" class="popup__button-close"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <form id="edit-profile" name="user-info" class="popup__form">
-                    <input type="text" name="user-name" class="popup__form-field" placeholder="Имя">
-                    <input type="text" name="user-description" class="popup__form-field" placeholder="О себе">
+                    <input type="text" name="user-name" class="popup__form-field" minlength="2" maxlength="40" required placeholder="Имя">
+                    <input type="text" name="user-description" class="popup__form-field" minlength="2" maxlength="200" required placeholder="О себе">
                     <button type="submit" class="popup__button-save">Сохранить</button>
                 </form>
             </div>
@@ -46,8 +46,8 @@
                 <button type="button" class="popup__button-close popup__button-close_add-item"></button>
                 <h2 class="popup__title popup__title_add-item">Новое место</h2>
                 <form id="add-item" name="item-info" class="popup__form popup__form_add-item">
-                    <input type="text" name="item-name" class="popup__form-field popup__form-field_add-item" placeholder="Название">
-                    <input type="url" name="item-link" class="popup__form-field popup__form-field_add-item" placeholder="Ссылка на картинку">
+                    <input type="text" name="item-name" class="popup__form-field popup__form-field_add-item" minlength="2" maxlength="30" required placeholder="Название">
+                    <input type="url" name="item-link" class="popup__form-field popup__form-field_add-item" required placeholder="Ссылка на картинку">
                     <button type="submit" class="popup__button-save popup__button-save_add-item">Создать</button>
                 </form>
             </div>

@@ -3,6 +3,7 @@ const popupAddItem = document.querySelector('.popup_add-item');
 const popupItem = document.querySelector('.popup_image');
 const profileInfo = document.querySelector('.profile__info');
 const profileForm = document.forms['edit-profile'];
+const body = document.querySelector('.page');
 
 function initButtons() {
     const buttonEdit = document.querySelector('.button-edit');  // Найти кнопку с карандашом
@@ -25,6 +26,9 @@ function initButtons() {
 
     const popupImageButtonClose = document.querySelector('.popup__button-close_image');
     popupImageButtonClose.addEventListener('click', closePopupImage);
+
+    const popupOverlays = document.querySelectorAll('.popup__overlay');
+    popupOverlays.forEach(overlay => overlay.addEventListener('click', closeParentPopup)); // привязать EventListener к каждому элементу коллекции overlay
 }
 
 function initContent() {
@@ -33,11 +37,27 @@ function initContent() {
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
+    body.addEventListener('keydown', closeWithEsc);
 }
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
 }
+
+function closeParentPopup(clickEvent) {
+    const overlay = clickEvent.target;
+    closePopup(overlay.parentElement);
+}
+
+function closeWithEsc(event) {
+    if(event.key === 'Escape') {
+        closePopup(document.querySelector('.popup_opened')); // вызвать функцию closePopup, передав ей элемент с классом .popup_opened
+        body.removeEventListener('keydown', closeWithEsc);
+    }
+}
+
+
+
 
 function showEditProfile() {
     openPopup(popupProfile);
