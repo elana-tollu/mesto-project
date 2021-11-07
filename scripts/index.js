@@ -55,19 +55,24 @@ function hideInputError (element) {
 
 function initEditProfileForm () {
     const editProfileForm = document.querySelector('#edit-profile');  // Найти форму редактирования профиля
-
     editProfileForm.addEventListener('submit', saveEditProfile);  // Прицепить обработчик на submit
 
-    const userNameInput = editProfileForm['user-name']; // Найти поле с именем
-    userNameInput.addEventListener('change', () => { // Повесить обработчик не на ввод, а на изменение
-        const isValid = userNameInput.checkValidity(); // Положить результат проверки валидности в переменную
-        setSubmitButtonState(editProfileForm, isValid); // Вызвать ф., переключающую состояние кнопки
+    initInput(editProfileForm, 'user-name');
+
+    initInput(editProfileForm, 'user-description');
+}
+
+function initInput (form, inputName) {
+    const input = form[inputName]; // Найти поле с именем
+    input.addEventListener('change', () => { // Повесить обработчик не на ввод, а на изменение
+        const isValid = input.checkValidity(); // Положить результат проверки валидности в переменную
+        setSubmitButtonState(form, isValid); // Вызвать ф., переключающую состояние кнопки
 
         if (isValid) { //Если форма валидна
-            hideInputError(userNameInput);
+            hideInputError(input);
         } else {
-            const message = userNameInput.validationMessage;
-            showInputError (userNameInput, message)
+            const message = input.validationMessage;
+            showInputError (input, message)
         }
     });
 }
