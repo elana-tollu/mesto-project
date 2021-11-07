@@ -23,8 +23,6 @@ function initButtons() {
     const buttonAdd = document.querySelector('.button-add');  // Найти кнопку с +
     buttonAdd.addEventListener('click', showAddItem);  // Прицепить listener
 
-    const addItemForm = document.querySelector('#add-item');
-    addItemForm.addEventListener('submit', saveAddItem);
 
     const addItemButtonCancel = document.querySelector('.popup__button-close_add-item');
     addItemButtonCancel.addEventListener('click', cancelAddItem);
@@ -36,21 +34,21 @@ function initButtons() {
     popupOverlays.forEach(overlay => overlay.addEventListener('click', closeParentPopup)); // привязать EventListener к каждому элементу коллекции overlay
 
     initEditProfileForm();
+
+    initAddItemForm ();
 }
 
 function initContent() {
     initialCards.forEach(addItem);
 }
 
-function showInputError (inputElement, errorMessage) {
-    inputElement.classList.add('popup__form-field_type_error');
-    const inputError = document.querySelector(`.${inputElement.name}-error`);
-    inputError.classList.add('popup__input-error_active');
-    inputError.textContent = errorMessage;
-}
+function initAddItemForm () {
+    const addItemForm = document.querySelector('#add-item');
+    addItemForm.addEventListener('submit', saveAddItem);
 
-function hideInputError (element) {
-    element.classList.remove('popup__form-field_type_error');
+    initInput(addItemForm, 'item-name');
+
+    initInput(addItemForm, 'item-link');
 }
 
 function initEditProfileForm () {
@@ -75,6 +73,17 @@ function initInput (form, inputName) {
             showInputError (input, message)
         }
     });
+}
+
+function showInputError (inputElement, errorMessage) {
+    inputElement.classList.add('popup__form-field_type_error');
+    const inputError = document.querySelector(`.${inputElement.name}-error`);
+    inputError.classList.add('popup__input-error_active');
+    inputError.textContent = errorMessage;
+}
+
+function hideInputError (element) {
+    element.classList.remove('popup__form-field_type_error');
 }
 
 function openPopup(popup) {
