@@ -19,6 +19,10 @@
     opacity: 0.8;
 }
 
+.popup__button-save:disabled {
+    background: #E5E5E5;
+}
+
 @media (min-width: 650px) {
     .popup__button-save {
         margin: 48px 36px 36px 36px;

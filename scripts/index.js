@@ -5,12 +5,17 @@ const profileInfo = document.querySelector('.profile__info');
 const profileForm = document.forms['edit-profile'];
 const body = document.querySelector('.page');
 
+function setSubmitButtonState(form, isFormValid) { // Функция, переключающая состояние кнопки
+    const submitButton = form.querySelector('.popup__button-save'); // Найти кнопку в форме
+    submitButton.disabled = !isFormValid; // Сделать кнопку .disabled, если форма невалидна
+};
+
+
+
 function initButtons() {
     const buttonEdit = document.querySelector('.button-edit');  // Найти кнопку с карандашом
     buttonEdit.addEventListener('click', showEditProfile);  // Прицепить listener
 
-    const editProfileForm = document.querySelector('#edit-profile');  // Найти форму редактирования профиля
-    editProfileForm.addEventListener('submit', saveEditProfile);  // Прицепить обработчик на submit
 
     const popupButtonCancel = document.querySelector('.popup__button-close');
     popupButtonCancel.addEventListener('click', cancelEditProfile);
@@ -29,10 +34,42 @@ function initButtons() {
 
     const popupOverlays = document.querySelectorAll('.popup__overlay');
     popupOverlays.forEach(overlay => overlay.addEventListener('click', closeParentPopup)); // привязать EventListener к каждому элементу коллекции overlay
+
+    initEditProfileForm();
 }
 
 function initContent() {
     initialCards.forEach(addItem);
+}
+
+function showInputError (inputElement, errorMessage) {
+    inputElement.classList.add('popup__form-field_type_error');
+    const inputError = document.querySelector(`.${inputElement.name}-error`);
+    inputError.classList.add('popup__input-error_active');
+    inputError.textContent = errorMessage;
+}
+
+function hideInputError (element) {
+    element.classList.remove('popup__form-field_type_error');
+}
+
+function initEditProfileForm () {
+    const editProfileForm = document.querySelector('#edit-profile');  // Найти форму редактирования профиля
+
+    editProfileForm.addEventListener('submit', saveEditProfile);  // Прицепить обработчик на submit
+
+    const userNameInput = editProfileForm['user-name']; // Найти поле с именем
+    userNameInput.addEventListener('change', () => { // Повесить обработчик не на ввод, а на изменение
+        const isValid = userNameInput.checkValidity(); // Положить результат проверки валидности в переменную
+        setSubmitButtonState(editProfileForm, isValid); // Вызвать ф., переключающую состояние кнопки
+
+        if (isValid) { //Если форма валидна
+            hideInputError(userNameInput);
+        } else {
+            const message = userNameInput.validationMessage;
+            showInputError (userNameInput, message)
+        }
+    });
 }
 
 function openPopup(popup) {
@@ -57,8 +94,6 @@ function closeWithEsc(event) {
 }
 
 
-
-
 function showEditProfile() {
     openPopup(popupProfile);
     const currentUserName = profileInfo.querySelector('.profile__name').textContent;
@@ -68,6 +103,7 @@ function showEditProfile() {
 }
 
 function saveEditProfile(submitEvent) {
+    // profileInfo.reset();
     submitEvent.preventDefault();  // Не отправлять форму на сервер и не перезагружать страницу
     const profileForm = submitEvent.target;
     const newUserName = profileForm.elements['user-name'].value;
@@ -156,4 +192,3 @@ function closePopupImage() {
 
 initButtons(); // При загрузке скрипта инициализировать кнопки
 initContent();
-
