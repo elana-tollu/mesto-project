@@ -1,0 +1,19 @@
+{
+  "name": "yandex.praktikum",
+  "version": "0.0.1",
+  "description": "Photos of interesting places",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elana-tollu/mesto-project.git"
+  },
+  "author": "Elana Tolliu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elana-tollu/mesto-project/issues"
+  },
+  "homepage": "https://github.com/elana-tollu/mesto-project#readme"
+}
