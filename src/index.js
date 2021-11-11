@@ -1,3 +1,4 @@
+import './pages/index.css';
 import {initialCards} from './components/card.js';
 import {initAddItemForm, initAddItem, addItem} from './components/addItem.js';
 import {initEditProfile, initEditProfileForm} from './components/editProfile.js';
