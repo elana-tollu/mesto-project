@@ -15,6 +15,7 @@ module.exports = {
     mode: 'development',
 
     devServer: {
+        // contentBase: path.resolve(__dirname, 'dist'),
         compress: true,
         port: 8080,
         open: true
@@ -25,16 +26,17 @@ module.exports = {
             template: './src/index.html',
             inject: true
            }),
-
-        new HtmlWebpackPlugin({
-            template: 'src/index.html'
-          }),
-          new CleanWebpackPlugin(),
-          new MiniCssExtractPlugin()
+        new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin()
     ],
 
     module: {
         rules: [
+        {
+            test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
+            type: 'asset/resource'
+        },
+
         {
           test: /\.css$/,
           use: [MiniCssExtractPlugin.loader, {
