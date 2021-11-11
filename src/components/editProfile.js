@@ -1,4 +1,3 @@
-import {initInput} from './validate.js';
 import { openPopup, closePopup } from "./modal.js";
 
 const popupProfile = document.querySelector('.popup_edit-profile');
@@ -16,10 +15,6 @@ export function initEditProfile() {
 export function initEditProfileForm () { //мод.окно редактирования профиля
     const editProfileForm = document.querySelector('#edit-profile');  // Найти форму редактирования профиля
     editProfileForm.addEventListener('submit', saveEditProfile);  // Прицепить обработчик на submit
-
-    initInput(editProfileForm, 'user-name');
-
-    initInput(editProfileForm, 'user-description');
 }
 
 function showEditProfile() {

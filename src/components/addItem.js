@@ -1,8 +1,8 @@
 import { createCard } from "./card.js";
 import { openPopup, closePopup } from "./modal.js";
-import { initInput } from "./validate.js";
+import { setSubmitButtonState } from "./validate.js";
 
-
+const addItemForm = document.querySelector('#add-item');
 const popupAddItem = document.querySelector('.popup_add-item');
 
 export function initAddItem() {
@@ -14,16 +14,12 @@ export function initAddItem() {
 }
 
 export function initAddItemForm () { //мод.окно добавления карточки
-    const addItemForm = document.querySelector('#add-item');
-    addItemForm.addEventListener('submit', saveAddItem);
-
-    initInput(addItemForm, 'item-name');
-
-    initInput(addItemForm, 'item-link');
+   addItemForm.addEventListener('submit', saveAddItem);
 }
 
 function showAddItem() {
     openPopup(popupAddItem);
+    setSubmitButtonState(addItemForm, false);
 }
 
 function saveAddItem(submitEvent) {

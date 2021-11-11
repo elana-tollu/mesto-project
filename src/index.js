@@ -4,6 +4,7 @@ import {initAddItemForm, initAddItem, addItem} from './components/addItem.js';
 import {initEditProfile, initEditProfileForm} from './components/editProfile.js';
 import { initCards } from './components/card.js';
 import {initModal} from './components/modal.js';
+import {enableValidation} from './components/validate.js';
 
 function initComponents() { //подключение кнопок и мод.окон
 
@@ -18,6 +19,8 @@ function initComponents() { //подключение кнопок и мод.ок
     initAddItemForm ();
 
     initCards();
+
+    enableValidation();
 }
 
 function initContent() {
