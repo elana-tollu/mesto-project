@@ -1,7 +1,7 @@
 const body = document.querySelector('.page');
+const popupOverlays = document.querySelectorAll('.popup__overlay');
 
 export function initModal() {
-    const popupOverlays = document.querySelectorAll('.popup__overlay');
     popupOverlays.forEach(overlay => overlay.addEventListener('click', closeParentPopup)); // привязать EventListener к каждому элементу коллекции overlay
 }
 
@@ -12,6 +12,7 @@ export function openPopup(popup) { // открывает мод.окно
 
 export function closePopup(popup) { // закрывает мод.окно
     popup.classList.remove('popup_opened');
+    body.removeEventListener('keydown', closeWithEsc);
 }
 
 function closeParentPopup(clickEvent) {
@@ -22,6 +23,5 @@ function closeParentPopup(clickEvent) {
 function closeWithEsc(event) {
     if(event.key === 'Escape') {
         closePopup(document.querySelector('.popup_opened')); // вызвать функцию closePopup, передав ей элемент с классом .popup_opened
-        body.removeEventListener('keydown', closeWithEsc);
     }
 }

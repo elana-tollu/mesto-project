@@ -27,16 +27,15 @@ export const initialCards = [
     }
     ];
 
-
 const popupItem = document.querySelector('.popup_image');
+const popupImageButtonClose = document.querySelector('.popup__button-close_image');
+const cardTemplate = document.querySelector('#card-template').content;
 
 export function initCards() {
-    const popupImageButtonClose = document.querySelector('.popup__button-close_image');
     popupImageButtonClose.addEventListener('click', closePopupImage);
 }
 
 export function createCard(item) { // создание карточки
-    const cardTemplate = document.querySelector('#card-template').content;
     const card = cardTemplate.querySelector('.element').cloneNode(true);
 
     const trashButton = card.querySelector('.element__button-trash');

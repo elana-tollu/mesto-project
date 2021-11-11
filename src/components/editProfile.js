@@ -3,17 +3,17 @@ import { openPopup, closePopup } from "./modal.js";
 const popupProfile = document.querySelector('.popup_edit-profile');
 const profileInfo = document.querySelector('.profile__info');
 const profileForm = document.forms['edit-profile'];
+const buttonEdit = document.querySelector('.button-edit');  // Найти кнопку с карандашом
+const popupButtonCancel = document.querySelector('.popup__button-close');
+const editProfileForm = document.querySelector('#edit-profile');  // Найти форму редактирования профиля
 
 export function initEditProfile() {
-    const buttonEdit = document.querySelector('.button-edit');  // Найти кнопку с карандашом
     buttonEdit.addEventListener('click', showEditProfile);  // Прицепить listener
 
-    const popupButtonCancel = document.querySelector('.popup__button-close');
     popupButtonCancel.addEventListener('click', cancelEditProfile);
 }
 
 export function initEditProfileForm () { //мод.окно редактирования профиля
-    const editProfileForm = document.querySelector('#edit-profile');  // Найти форму редактирования профиля
     editProfileForm.addEventListener('submit', saveEditProfile);  // Прицепить обработчик на submit
 }
 

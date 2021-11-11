@@ -1,3 +1,4 @@
+const formList = Array.from(document.querySelectorAll('.popup__form'));
 
 export function initInput (form, inputName) { //валидность полей мод.окон
     const input = form[inputName]; // Найти поле с именем
@@ -34,7 +35,6 @@ function hideInputError (formElement, inputElement) { //скрывает оши�
 }
 
 export function enableValidation() {
-    const formList = Array.from(document.querySelectorAll('.popup__form'));
     formList.forEach((formElement) => {
         formElement.addEventListener('submit', (evt) => {
             evt.preventDefault();

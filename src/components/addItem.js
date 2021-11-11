@@ -4,12 +4,13 @@ import { setSubmitButtonState } from "./validate.js";
 
 const addItemForm = document.querySelector('#add-item');
 const popupAddItem = document.querySelector('.popup_add-item');
+const buttonAdd = document.querySelector('.button-add');  // Найти кнопку с +
+const addItemButtonCancel = document.querySelector('.popup__button-close_add-item');
+const elements = document.querySelector('.elements__list'); // найти контейнер карточек
 
 export function initAddItem() {
-    const buttonAdd = document.querySelector('.button-add');  // Найти кнопку с +
     buttonAdd.addEventListener('click', showAddItem);  // Прицепить listener
 
-    const addItemButtonCancel = document.querySelector('.popup__button-close_add-item');
     addItemButtonCancel.addEventListener('click', cancelAddItem);
 }
 
@@ -39,7 +40,6 @@ function cancelAddItem() {
 }
 
 export function addItem(card) { // добавление карточки
-    const elements = document.querySelector('.elements__list'); // найти контейнер карточек
     elements.prepend(createCard(card))
 }
 
