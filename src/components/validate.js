@@ -1,62 +1,63 @@
-const formList = Array.from(document.querySelectorAll('.popup__form'));
-
-export function initInput (form, inputName) { //валидность полей мод.окон
-    const input = form[inputName]; // Найти поле с именем
-    input.addEventListener('input', () => { // Повесить обработчик не на ввод, а на изменение
-        const isValid = input.checkValidity(); // Положить результат проверки валидности в переменную
-        setSubmitButtonState(form, isValid); // Вызвать ф., переключающую состояние кнопки
-
-        if (isValid) { //Если форма валидна
-            hideInputError(input);
-        } else {
-            const message = input.validationMessage;
-            showInputError (input, message)
-        }
-    });
-}
-
-export function setSubmitButtonState(form, isFormValid) { // Функция, переключающая состояние кнопки submit
-    const submitButton = form.querySelector('.popup__button-save'); // Найти кнопку в форме
+export function setSubmitButtonState(form, isFormValid, {submitButtonSelector}) { // Функция, переключающая состояние кнопки submit
+    const submitButton = form.querySelector(submitButtonSelector); // Найти кнопку в форме
     submitButton.disabled = !isFormValid; // Сделать кнопку .disabled, если форма невалидна
 };
 
-function showInputError (formElement, inputElement, errorMessage) { //показ. ошибку в поле мод.окна
-    inputElement.classList.add('popup__form-field_type_error');
-    const inputError = formElement.querySelector(`.${inputElement.name}-error`);
-    inputError.classList.add('popup__input-error_active');
-    inputError.textContent = errorMessage;
-}
-
-function hideInputError (formElement, inputElement) { //скрывает ошибку в поле мод.окна
-    inputElement.classList.remove('popup__form-field_type_error');
-    const errorElement = formElement.querySelector(`.${inputElement.name}-error`);
-    errorElement.classList.remove('form__input-error_active');
-    errorElement.textContent = '';
-}
-
-export function enableValidation() {
+export function enableValidation({formSelector, inputSelector, errorClass, inputErrorClass, submitButtonSelector}) {
+    const formList = Array.from(document.querySelectorAll(formSelector));
     formList.forEach((formElement) => {
         formElement.addEventListener('submit', (evt) => {
             evt.preventDefault();
     });
-        setEventListeners(formElement);
+        setEventListeners(formElement, {
+            inputSelector,
+            errorClass,
+            inputErrorClass,
+            submitButtonSelector
+        });
     });
 };
 
-function setEventListeners (formElement) {
-    const inputList = Array.from(formElement.querySelectorAll('.popup__form-field'));
+function setEventListeners (formElement, {inputSelector, errorClass, inputErrorClass, submitButtonSelector}) {
+    const inputList = Array.from(formElement.querySelectorAll(inputSelector));
     inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
-        isValid(formElement, inputElement)
+        isValid(formElement, inputElement, {
+            errorClass,
+            inputErrorClass,
+            submitButtonSelector
+        })
       });
     });
   };
 
-function isValid (formElement, inputElement) {
+function isValid (formElement, inputElement, {errorClass, inputErrorClass, submitButtonSelector}) {
     if (!inputElement.validity.valid) {
-        showInputError(formElement, inputElement, inputElement.validationMessage);
+        showInputError(formElement, inputElement, inputElement.validationMessage, {
+            errorClass,
+            inputErrorClass
+        });
     } else {
-        hideInputError(formElement, inputElement);
+        hideInputError(formElement, inputElement, {
+            errorClass,
+            inputErrorClass
+        });
     }
-    setSubmitButtonState(formElement, formElement.checkValidity());
+    setSubmitButtonState(formElement, formElement.checkValidity(), {
+        submitButtonSelector
+    });
   };
+
+function showInputError (formElement, inputElement, errorMessage, {errorClass, inputErrorClass}) { //показ. ошибку в поле мод.окна
+    inputElement.classList.add(inputErrorClass);
+    const inputError = formElement.querySelector(`.${inputElement.name}-error`);
+    inputError.classList.add(errorClass);
+    inputError.textContent = errorMessage;
+}
+
+function hideInputError (formElement, inputElement, {errorClass, inputErrorClass}) { //скрывает ошибку в поле мод.окна
+    inputElement.classList.remove(inputErrorClass);
+    const errorElement = formElement.querySelector(`.${inputElement.name}-error`);
+    errorElement.classList.remove(errorClass);
+    errorElement.textContent = '';
+}

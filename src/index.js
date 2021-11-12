@@ -20,7 +20,13 @@ function initComponents() { //подключение кнопок и мод.ок
 
     initCards();
 
-    enableValidation();
+    enableValidation({
+        formSelector: '.popup__form',
+        inputSelector: '.popup__form-field',
+        errorClass: 'popup__input-error_active',
+        inputErrorClass: 'popup__form-field_type_error',
+        submitButtonSelector: '.popup__button-save'
+    });
 }
 
 function initContent() {

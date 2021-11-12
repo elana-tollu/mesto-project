@@ -20,7 +20,9 @@ export function initAddItemForm () { //мод.окно добавления ка
 
 function showAddItem() {
     openPopup(popupAddItem);
-    setSubmitButtonState(addItemForm, false);
+    setSubmitButtonState(addItemForm, false, {
+        submitButtonSelector: '.popup__button-save'
+    });
 }
 
 function saveAddItem(submitEvent) {
