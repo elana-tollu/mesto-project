@@ -2,7 +2,7 @@
   "name": "yandex.praktikum",
   "version": "0.0.1",
   "description": "Photos of interesting places",
-  "main": "index.js",
+  "main": "pages/index.js",
   "scripts": {
     "build": "rm -rf dist && webpack",
     "dev": "webpack serve"
