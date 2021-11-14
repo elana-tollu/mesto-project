@@ -1,12 +1,14 @@
 const baseUrl = 'https://mesto.nomoreparties.co/v1/plus-cohort-3/';
 const token = '601ed199-89d3-4904-a997-8272583014cc';
 
-export function loadUser() {
-    return fetch(`${baseUrl}users/me`, {
-        method: 'GET',
+function request({method, resource, data}) {
+    return fetch(`${baseUrl}${resource}`, {
+        method,
         headers: {
-            Authorization: token
-        }
+            Authorization: token,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
     })
     .then ((response) => {
         if (response.ok) {
@@ -14,8 +16,14 @@ export function loadUser() {
         } else {
             return Promise.reject(`Ошибка: ${response.status} ${response.statusText}`);
         }
-    })
+    });
+}
 
+export function loadUser() {
+    return request({
+        method: 'GET',
+        resource: 'users/me'
+    })
     .then(user => ({
         name: user.name,
         about: user.about,
@@ -28,20 +36,10 @@ export function updateUser(user) {}
 export function updateUserAvatar() {}
 
 export function loadCards() {
-    return fetch(`${baseUrl}cards`, {
+    return request({
         method: 'GET',
-        headers: {
-            Authorization: token
-        }
+        resource: 'cards'
     })
-    .then ((response) => {
-        if (response.ok) {
-            return response.json()
-        } else {
-            return Promise.reject(`Ошибка: ${response.status} ${response.statusText}`);
-        }
-    })
-
     .then((cards) => {
         return cards.map( card => ({
             name: card.name,
