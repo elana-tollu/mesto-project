@@ -1,11 +1,11 @@
 import './index.css';
 import {initialCards} from '../components/card.js';
 import {initAddItemForm, initAddItem, addItem} from '../components/addItem.js';
-import {initEditProfile, initEditProfileForm} from '../components/editProfile.js';
+import {initEditProfile, initEditProfileForm, showUser} from '../components/profile.js';
 import { initCards } from '../components/card.js';
 import {initModal} from '../components/modal.js';
 import {enableValidation} from '../components/validate.js';
-import {loadCards} from '../components/api.js';
+import {loadCards, loadUser} from '../components/api.js';
 
 function initComponents() { //подключение кнопок и мод.окон
 
@@ -35,6 +35,9 @@ function initContent() {
     loadCards().then(cards => {
         cards.forEach(addItem);
     })
+    .catch(alert);
+
+    loadUser().then(showUser)
     .catch(alert);
 }
 

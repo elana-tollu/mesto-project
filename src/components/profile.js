@@ -6,6 +6,15 @@ const profileForm = document.forms['edit-profile'];
 const buttonEdit = document.querySelector('.button-edit');  // Найти кнопку с карандашом
 const popupButtonCancel = document.querySelector('.popup__button-close');
 const editProfileForm = document.querySelector('#edit-profile');  // Найти форму редактирования профиля
+const userName = profileInfo.querySelector('.profile__name');
+const userDescription = profileInfo.querySelector('.profile__description');
+const userAvatar = document.querySelector('.profile__avatar');
+
+export function showUser(user) {
+    userName.textContent = user.name; // найти элементы профиля и задать текстовое содержимое элементам на странице
+    userDescription.textContent = user.about;
+    userAvatar.src = user.avatar;
+}
 
 export function initEditProfile() {
     buttonEdit.addEventListener('click', showEditProfile);  // Прицепить listener
