@@ -52,6 +52,8 @@ export function createCard(item) { // создание карточки
     const likeButton = card.querySelector('.button-like');
     likeButton.addEventListener('click', toggleLike);
 
+    const likesCount = card.querySelector('.element__like-count');
+    likesCount.textContent = item.likesCount;
     return card;
 }
 

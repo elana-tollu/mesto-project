@@ -54,7 +54,8 @@ export function loadCards() {
     .then((cards) => {
         return cards.map( card => ({
             name: card.name,
-            link: card.link
+            link: card.link,
+            likesCount: card.likes.length
         }));
     });
 }
