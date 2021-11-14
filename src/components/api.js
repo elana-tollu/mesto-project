@@ -31,7 +31,18 @@ export function loadUser() {
     }));
 }
 
-export function updateUser(user) {}
+export function updateUser({name, about}) {
+    return request({
+        method: 'PATCH',
+        resource: 'users/me',
+        data: {name, about}
+    })
+    .then(user => ({
+        name: user.name,
+        about: user.about,
+        avatar: user.avatar
+    }));
+}
 
 export function updateUserAvatar() {}
 

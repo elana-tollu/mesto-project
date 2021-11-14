@@ -1,4 +1,5 @@
 import { openPopup, closePopup } from "./modal.js";
+import { updateUser } from "./api.js";
 
 const popupProfile = document.querySelector('.popup_edit-profile');
 const profileInfo = document.querySelector('.profile__info');
@@ -40,10 +41,13 @@ function saveEditProfile(submitEvent) {
     const profileForm = submitEvent.target;
     const newUserName = profileForm.elements['user-name'].value;
     const newProfileDescription = profileForm.elements['user-description'].value;// найти инпуты, взять данные из инпутов
-    profileInfo.querySelector('.profile__name').textContent = newUserName; // найти элементы профиля и задать текстовое содержимое элементам на странице
-    profileInfo.querySelector('.profile__description').textContent = newProfileDescription;
-
-    closePopup(popupProfile);
+    updateUser({
+        name: newUserName,
+        about: newProfileDescription
+    })
+    .then(showUser)
+    .catch(alert)
+    .finally(() => closePopup(popupProfile));
 }
 
 function cancelEditProfile() {
