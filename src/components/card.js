@@ -1,5 +1,5 @@
 import { openPopup, closePopup } from "./modal.js";
-import { deleteCard } from "./api.js";
+import { deleteCard, likeCard, unlikeCard } from "./api.js";
 import { getUserId } from "./profile.js";
 
 export const initialCards = [
@@ -57,7 +57,20 @@ export function createCard(item) { // создание карточки
     heading.append(document.createTextNode(item.name));  // присвоить значение
 
     const likeButton = card.querySelector('.button-like');// найти кнопку лайка
-    likeButton.addEventListener('click', toggleLike);     // повесить слушатель
+    if (item.likes && item.likes.find(like => like._id === getUserId())) {
+        likeButton.classList.add('button-like_active');
+        likeButton.addEventListener('click', () => {
+            unlikeCard(item.id)
+            .then(() => likeButton.classList.remove('button-like_active'))
+            .catch(alert)
+        });
+    } else {
+        likeButton.addEventListener('click', () => {
+            likeCard(item.id)
+            .then(() => likeButton.classList.add('button-like_active'))
+            .catch(alert)
+        });
+    }
 
     const likesCount = card.querySelector('.element__like-count'); // найти счетчик лайков
     likesCount.textContent = item.likesCount;             // присвоить значение

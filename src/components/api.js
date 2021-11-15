@@ -57,6 +57,7 @@ export function loadCards() {
             name: card.name,
             link: card.link,
             likesCount: card.likes.length,
+            likes: card.likes,
             id: card._id,
             ownerId: card.owner._id
         }));
@@ -76,19 +77,42 @@ export function addCard(card) { // попыталась написать фун�
         name: card.name,
         link: card.link,
         likesCount: card.likes.length,
+        likes: card.likes,
         id: card._id,
         ownerId: card.owner._id
     }));
 }
 
-export function likeCard(cardId) {}
+export function likeCard(cardId) {
+    return request({
+        method: 'PUT',
+        resource: `cards/likes/${cardId}`
+    })
+    .then(card => ({
+        name: card.name,
+        link: card.link,
+        likesCount: card.likes.length,
+        likes: card.likes,
+        id: card._id,
+        ownerId: card.owner._id
+    }));
+}
 
-export function unlikeCard(cardId) {}
+export function unlikeCard(cardId) {
+    return request({
+        method: 'DELETE',
+        resource: `cards/likes/${cardId}`
+    })
+    .then(card => ({
+        name: card.name,
+        link: card.link,
+        likesCount: card.likes.length,
+        likes: card.likes,
+        id: card._id,
+        ownerId: card.owner._id
+    }));
+}
 
-// в отрисовке карточки иконка удаления отображается если id пользователя совпадает
-    // с id владельца
-
-    // пользователь жмет на корзинку - срабатывает submit
 export function deleteCard(cardId) {
     return request({
         method: 'DELETE',
