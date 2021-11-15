@@ -27,7 +27,8 @@ export function loadUser() {
     .then(user => ({ // запрос успешен - присвоить ключам новые значения
         name: user.name,
         about: user.about,
-        avatar: user.avatar
+        avatar: user.avatar,
+        id: user._id
     }));
 }
 
@@ -56,7 +57,8 @@ export function loadCards() {
             name: card.name,
             link: card.link,
             likesCount: card.likes.length,
-            id: card._id
+            id: card._id,
+            ownerId: card.owner._id
         }));
     });
 }
@@ -74,7 +76,8 @@ export function addCard(card) { // попыталась написать фун�
         name: card.name,
         link: card.link,
         likesCount: card.likes.length,
-        id: card._id
+        id: card._id,
+        ownerId: card.owner._id
     }));
 }
 

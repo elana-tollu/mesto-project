@@ -1,5 +1,6 @@
 import { openPopup, closePopup } from "./modal.js";
 import { deleteCard } from "./api.js";
+import { getUserId } from "./profile.js";
 
 export const initialCards = [
     {
@@ -41,7 +42,11 @@ export function createCard(item) { // создание карточки
     card.dataset.cardId = item.id;
 
     const trashButton = card.querySelector('.element__button-trash'); //найти кнопку удаления
-    trashButton.addEventListener('click', deleteItem);                // прицепить слушатель
+    if (getUserId() === item.ownerId) {
+        trashButton.addEventListener('click', deleteItem);                // прицепить слушатель
+    } else {
+        trashButton.remove();
+    }
 
     const image = card.querySelector('.element__image'); // найти карточку
     image.src = item.link;                               // присвоить значения
