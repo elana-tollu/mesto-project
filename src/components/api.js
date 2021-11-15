@@ -20,11 +20,11 @@ function request({method, resource, data}) {
 }
 
 export function loadUser() {
-    return request({
+    return request({  // возвращаем функцию
         method: 'GET',
         resource: 'users/me'
     })
-    .then(user => ({
+    .then(user => ({ // запрос успешен - присвоить ключам новые значения
         name: user.name,
         about: user.about,
         avatar: user.avatar
@@ -60,7 +60,21 @@ export function loadCards() {
     });
 }
 
-export function addCard(card) {}
+export function addCard(card) { // попыталась написать функцию
+    return request({
+        method: 'POST',
+        resource: 'cards',
+        data: {
+            name: card.name,
+            link: card.link
+        }
+    })
+    .then(card => ({
+        name: card.name,
+        link: card.link,
+        likesCount: card.likes.length
+    }));
+}
 
 export function likeCard(cardId) {}
 

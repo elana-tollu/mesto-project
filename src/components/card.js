@@ -36,26 +36,27 @@ export function initCards() {
 }
 
 export function createCard(item) { // создание карточки
-    const card = cardTemplate.querySelector('.element').cloneNode(true);
+    const card = cardTemplate.querySelector('.element').cloneNode(true); // создаем новый узел ДОМ
 
-    const trashButton = card.querySelector('.element__button-trash');
-    trashButton.addEventListener('click', deleteItem);
+    const trashButton = card.querySelector('.element__button-trash'); //найти кнопку удаления
+    trashButton.addEventListener('click', deleteItem);                // прицепить слушатель
 
-    const image = card.querySelector('.element__image');
-    image.src = item.link;
+    const image = card.querySelector('.element__image'); // найти карточку
+    image.src = item.link;                               // присвоить значения
     image.alt = item.name;
-    image.addEventListener('click', openImage);
+    image.addEventListener('click', openImage);          // прицепить слушатель
 
-    const heading = card.querySelector('.element__name');
-    heading.append(document.createTextNode(item.name));
+    const heading = card.querySelector('.element__name');// найти заголовок
+    heading.append(document.createTextNode(item.name));  // присвоить значение
 
-    const likeButton = card.querySelector('.button-like');
-    likeButton.addEventListener('click', toggleLike);
+    const likeButton = card.querySelector('.button-like');// найти кнопку лайка
+    likeButton.addEventListener('click', toggleLike);     // повесить слушатель
 
-    const likesCount = card.querySelector('.element__like-count');
-    likesCount.textContent = item.likesCount;
+    const likesCount = card.querySelector('.element__like-count'); // найти счетчик лайков
+    likesCount.textContent = item.likesCount;             // присвоить значение
     return card;
-}
+
+   }
 
 function toggleLike(clickEvent) { // переключение лайка
     clickEvent.target.classList.toggle('button-like_active');

@@ -14,12 +14,11 @@ const userAvatar = document.querySelector('.profile__avatar');
 export function showUser(user) {
     userName.textContent = user.name; // найти элементы профиля и задать текстовое содержимое элементам на странице
     userDescription.textContent = user.about;
-    userAvatar.src = user.avatar;
+    userAvatar.src = user.avatar; // задать аватар по .src
 }
 
 export function initEditProfile() {
     buttonEdit.addEventListener('click', showEditProfile);  // Прицепить listener
-
     popupButtonCancel.addEventListener('click', cancelEditProfile);
 }
 
@@ -29,7 +28,7 @@ export function initEditProfileForm () { //мод.окно редактиров�
 
 function showEditProfile() {
     openPopup(popupProfile);
-    const currentUserName = profileInfo.querySelector('.profile__name').textContent;
+    const currentUserName = profileInfo.querySelector('.profile__name').textContent; // присвоить переменной текстовое содержимое узла ДОМ
     const currentProfileDescription = profileInfo.querySelector('.profile__description').textContent;
     profileForm.elements['user-name'].value = currentUserName;
     profileForm.elements['user-description'].value = currentProfileDescription;
@@ -39,15 +38,15 @@ function saveEditProfile(submitEvent) {
     // profileInfo.reset();
     submitEvent.preventDefault();  // Не отправлять форму на сервер и не перезагружать страницу
     const profileForm = submitEvent.target;
-    const newUserName = profileForm.elements['user-name'].value;
+    const newUserName = profileForm.elements['user-name'].value; // присвоить переменной значение интпута
     const newProfileDescription = profileForm.elements['user-description'].value;// найти инпуты, взять данные из инпутов
-    updateUser({
+    updateUser({ // обновить объект, присвоив ключам новые значения
         name: newUserName,
         about: newProfileDescription
     })
-    .then(showUser)
-    .catch(alert)
-    .finally(() => closePopup(popupProfile));
+    .then(showUser) // запрос успешен - показать нового юзера
+    .catch(alert)   // неуспешен - вывести сообщение с ошибкой
+    .finally(() => closePopup(popupProfile)); // в любом случае - закрыть попап
 }
 
 function cancelEditProfile() {

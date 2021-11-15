@@ -1,6 +1,7 @@
 import { createCard } from "./card.js";
 import { openPopup, closePopup } from "./modal.js";
 import { setSubmitButtonState } from "./validate.js";
+import { addCard } from "./api.js";
 
 const addItemForm = document.querySelector('#add-item');
 const popupAddItem = document.querySelector('.popup_add-item');
@@ -32,9 +33,13 @@ function saveAddItem(submitEvent) {
         name: itemForm.elements['item-name'].value,
         link: itemForm.elements['item-link'].value
     }
-    addItem(card);
-    itemForm.reset();
-    closePopup(popupAddItem);
+    addCard(card)
+    .then(addItem) // запрос успешен - показать новую карточку
+    .catch(alert)   // неуспешен - вывести сообщение с ошибкой
+    .finally(() => {
+        itemForm.reset();
+        closePopup(popupAddItem);
+    }); // в любом случае - закрыть попап
 }
 
 function cancelAddItem() {
