@@ -1,4 +1,5 @@
 import { openPopup, closePopup } from "./modal.js";
+import { deleteCard } from "./api.js";
 
 export const initialCards = [
     {
@@ -37,6 +38,7 @@ export function initCards() {
 
 export function createCard(item) { // создание карточки
     const card = cardTemplate.querySelector('.element').cloneNode(true); // создаем новый узел ДОМ
+    card.dataset.cardId = item.id;
 
     const trashButton = card.querySelector('.element__button-trash'); //найти кнопку удаления
     trashButton.addEventListener('click', deleteItem);                // прицепить слушатель
@@ -66,7 +68,10 @@ function toggleLike(clickEvent) { // переключение лайка
 function deleteItem(clickEvent) { // удаление карточки
     const buttonTrash = clickEvent.target;
     const item = buttonTrash.closest('.element');
-    item.remove();
+    const cardId = item.dataset.cardId;
+    deleteCard(cardId)
+    .then(() => item.remove())
+    .catch(alert);
 }
 
 function openImage (clickEvent) { //открывание мод.окна карточки

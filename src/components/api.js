@@ -55,7 +55,8 @@ export function loadCards() {
         return cards.map( card => ({
             name: card.name,
             link: card.link,
-            likesCount: card.likes.length
+            likesCount: card.likes.length,
+            id: card._id
         }));
     });
 }
@@ -72,7 +73,8 @@ export function addCard(card) { // попыталась написать фун�
     .then(card => ({
         name: card.name,
         link: card.link,
-        likesCount: card.likes.length
+        likesCount: card.likes.length,
+        id: card._id
     }));
 }
 
@@ -80,5 +82,14 @@ export function likeCard(cardId) {}
 
 export function unlikeCard(cardId) {}
 
-export function deleteCard(cardId) {}
+// в отрисовке карточки иконка удаления отображается если id пользователя совпадает
+    // с id владельца
+
+    // пользователь жмет на корзинку - срабатывает submit
+export function deleteCard(cardId) {
+    return request({
+        method: 'DELETE',
+        resource: `cards/${cardId}`
+    });
+}
 
