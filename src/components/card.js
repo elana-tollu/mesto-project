@@ -32,6 +32,7 @@ export const initialCards = [
 const popupItem = document.querySelector('.popup_image');
 const popupImageButtonClose = document.querySelector('.popup__button-close_image');
 const cardTemplate = document.querySelector('#card-template').content;
+const cards = document.querySelector('.elements__list'); // контейнер карточек
 
 export function initCards() {
     popupImageButtonClose.addEventListener('click', closePopupImage);
@@ -61,13 +62,13 @@ export function createCard(item) { // создание карточки
         likeButton.classList.add('button-like_active');
         likeButton.addEventListener('click', () => {
             unlikeCard(item.id)
-            .then(() => likeButton.classList.remove('button-like_active'))
+            .then(unlikedCard => cards.replaceChild(createCard(unlikedCard), card))
             .catch(alert)
         });
     } else {
         likeButton.addEventListener('click', () => {
             likeCard(item.id)
-            .then(() => likeButton.classList.add('button-like_active'))
+            .then(likedCard => cards.replaceChild(createCard(likedCard), card))
             .catch(alert)
         });
     }
@@ -77,10 +78,6 @@ export function createCard(item) { // создание карточки
     return card;
 
    }
-
-function toggleLike(clickEvent) { // переключение лайка
-    clickEvent.target.classList.toggle('button-like_active');
-}
 
 
 function deleteItem(clickEvent) { // удаление карточки
