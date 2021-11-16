@@ -36,7 +36,7 @@ function initComponents() { //подключение кнопок и мод.ок
 
 function initContent() {
     loadUser().then(user => {
-        showUser;
+        showUser(user);
         setUserId(user.id);
     })
     .catch(alert);

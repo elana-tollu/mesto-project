@@ -9,6 +9,7 @@ const popupButtonCancel = document.querySelector('.popup__button-close_profile')
 const editProfileForm = document.querySelector('#edit-profile');  // Найти форму редактирования профиля
 const userName = profileInfo.querySelector('.profile__name');
 const userDescription = profileInfo.querySelector('.profile__description');
+const saveProfileButton = profileForm.querySelector('.popup__button-save');
 const userAvatar = document.querySelector('.profile__avatar');
 let _userId;
 
@@ -46,6 +47,7 @@ function showEditProfile() {
 function saveEditProfile(submitEvent) {
     // profileInfo.reset();
     submitEvent.preventDefault();  // Не отправлять форму на сервер и не перезагружать страницу
+    saveProfileButton.textContent = "Сохранение...";
     const profileForm = submitEvent.target;
     const newUserName = profileForm.elements['user-name'].value; // присвоить переменной значение интпута
     const newProfileDescription = profileForm.elements['user-description'].value;// найти инпуты, взять данные из инпутов
@@ -55,7 +57,10 @@ function saveEditProfile(submitEvent) {
     })
     .then(showUser) // запрос успешен - показать нового юзера
     .catch(alert)   // неуспешен - вывести сообщение с ошибкой
-    .finally(() => closePopup(popupProfile)); // в любом случае - закрыть попап
+    .finally(() => {
+        closePopup(popupProfile);
+        saveProfileButton.textContent = "Сохранить";
+    }); // в любом случае - закрыть попап
 }
 
 function cancelEditProfile() {
@@ -68,6 +73,7 @@ const buttonEditAvatar = document.querySelector('.button-edit_avatar');
 const buttonCancelAvatar = document.querySelector('.popup__button-close_edit-avatar');
 const avatarImage = document.querySelector('.profile__avatar'); // присвоить переменной текстовое содержимое узла ДОМ
 const avatarForm = document.forms['edit-avatar'];
+const saveAvatarButton = popupAvatar.querySelector('.popup__button-save_edit-avatar');
 
 export function initEditAvatar() {
     buttonEditAvatar.addEventListener('click', showEditAvatar);  // Прицепить listener
@@ -91,9 +97,13 @@ export function initEditAvatarForm () {
 
 function saveEditAvatar(submitEvent) {
     submitEvent.preventDefault();  // Не отправлять форму на сервер и не перезагружать страницу
+    saveAvatarButton.textContent = "Сохранение...";
     const newSrc = avatarForm.elements['avatar-link'].value; // присвоить переменной значение интпута
     updateUserAvatar(newSrc)
     .then( () => avatarImage.src = newSrc) // запрос успешен - показать нового юзера
     .catch(alert)   // неуспешен - вывести сообщение с ошибкой
-    .finally(() => closePopup(popupAvatar)); // в любом случае - закрыть попап
+    .finally(() => {
+        closePopup(popupAvatar);
+        saveAvatarButton.textContent = "Сохранить";
+    }); // в любом случае - закрыть попап
 }
