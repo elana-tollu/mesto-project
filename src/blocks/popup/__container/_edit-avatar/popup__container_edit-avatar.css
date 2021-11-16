@@ -1,0 +1,6 @@
+.popup__container_edit-avatar {
+    min-height: 272px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
