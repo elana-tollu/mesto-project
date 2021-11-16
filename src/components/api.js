@@ -45,7 +45,9 @@ export function updateUser({name, about}) {
     }));
 }
 
-export function updateUserAvatar() {}
+export function updateUserAvatar() {
+
+}
 
 export function loadCards() {
     return request({

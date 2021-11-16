@@ -3,6 +3,13 @@
     height: 120px;
     border-radius: 50%;
     align-self: center;
+    position: relative;
+    z-index: 1;
+}
+
+.profile__avatar:hover {
+    background-color: #000;
+    opacity: 0.2;
 }
 
 @media (min-width: 950px) {
