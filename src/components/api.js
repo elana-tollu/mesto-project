@@ -45,8 +45,12 @@ export function updateUser({name, about}) {
     }));
 }
 
-export function updateUserAvatar() {
-
+export function updateUserAvatar(link) {
+    return request({
+        method: 'PATCH',
+        resource: 'users/me/avatar',
+        data: {avatar: link}
+    });
 }
 
 export function loadCards() {

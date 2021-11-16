@@ -1,5 +1,5 @@
 import { openPopup, closePopup } from "./modal.js";
-import { updateUser } from "./api.js";
+import { updateUser, updateUserAvatar } from "./api.js";
 
 const popupProfile = document.querySelector('.popup_edit-profile');
 const profileInfo = document.querySelector('.profile__info');
@@ -84,3 +84,16 @@ function cancelEditAvatar() {
     closePopup(popupAvatar);
 }
 
+
+export function initEditAvatarForm () {
+    avatarForm.addEventListener('submit', saveEditAvatar);
+}
+
+function saveEditAvatar(submitEvent) {
+    submitEvent.preventDefault();  // Не отправлять форму на сервер и не перезагружать страницу
+    const newSrc = avatarForm.elements['avatar-link'].value; // присвоить переменной значение интпута
+    updateUserAvatar(newSrc)
+    .then( () => avatarImage.src = newSrc) // запрос успешен - показать нового юзера
+    .catch(alert)   // неуспешен - вывести сообщение с ошибкой
+    .finally(() => closePopup(popupAvatar)); // в любом случае - закрыть попап
+}
