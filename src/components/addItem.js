@@ -38,12 +38,12 @@ function saveAddItem(submitEvent) {
     addCard(card)
     .then(newCard => {
         addItem(newCard);
+        itemForm.reset();
         closePopup(popupAddItem);
-        submitButton.textContent = "Сохранить";
     }) // запрос успешен - показать новую карточку
     .catch(alert)   // неуспешен - вывести сообщение с ошибкой
     .finally(() => {
-        itemForm.reset();
+        submitButton.textContent = "Сохранить";
         }); // в любом случае - закрыть попап
 }
 

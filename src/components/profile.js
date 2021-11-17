@@ -45,7 +45,6 @@ function showEditProfile() {
 }
 
 function saveEditProfile(submitEvent) {
-    // profileInfo.reset();
     submitEvent.preventDefault();  // Не отправлять форму на сервер и не перезагружать страницу
     saveProfileButton.textContent = "Сохранение...";
     const profileForm = submitEvent.target;
