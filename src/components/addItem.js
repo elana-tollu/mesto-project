@@ -36,13 +36,15 @@ function saveAddItem(submitEvent) {
         link: itemForm.elements['item-link'].value
     }
     addCard(card)
-    .then(addItem) // запрос успешен - показать новую карточку
+    .then(newCard => {
+        addItem(newCard);
+        closePopup(popupAddItem);
+        submitButton.textContent = "Сохранить";
+    }) // запрос успешен - показать новую карточку
     .catch(alert)   // неуспешен - вывести сообщение с ошибкой
     .finally(() => {
         itemForm.reset();
-        closePopup(popupAddItem);
-        submitButton.textContent = "Сохранить";
-    }); // в любом случае - закрыть попап
+        }); // в любом случае - закрыть попап
 }
 
 function cancelAddItem() {

@@ -2,33 +2,6 @@ import { openPopup, closePopup } from "./modal.js";
 import { deleteCard, likeCard, unlikeCard } from "./api.js";
 import { getUserId } from "./profile.js";
 
-export const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-    ];
-
 const popupItem = document.querySelector('.popup_image');
 const popupImageButtonClose = document.querySelector('.popup__button-close_image');
 const cardTemplate = document.querySelector('#card-template').content;
@@ -55,30 +28,36 @@ export function createCard(item) { // создание карточки
     image.addEventListener('click', openImage);          // прицепить слушатель
 
     const heading = card.querySelector('.element__name');// найти заголовок
-    heading.append(document.createTextNode(item.name));  // присвоить значение
-
-    const likeButton = card.querySelector('.button-like');// найти кнопку лайка
-    if (item.likes && item.likes.find(like => like._id === getUserId())) {
-        likeButton.classList.add('button-like_active');
-        likeButton.addEventListener('click', () => {
-            unlikeCard(item.id)
-            .then(unlikedCard => cards.replaceChild(createCard(unlikedCard), card))
-            .catch(alert)
-        });
-    } else {
-        likeButton.addEventListener('click', () => {
-            likeCard(item.id)
-            .then(likedCard => cards.replaceChild(createCard(likedCard), card))
-            .catch(alert)
-        });
-    }
+    heading.textContent = item.name;  // присвоить значение
 
     const likesCount = card.querySelector('.element__like-count'); // найти счетчик лайков
     likesCount.textContent = item.likesCount;             // присвоить значение
+
+    const likeButton = card.querySelector('.button-like');// найти кнопку лайка
+    if (item.likes.find(like => like._id === getUserId())) {
+        likeButton.classList.add('button-like_active');
+    }
+
+    likeButton.addEventListener('click', () => {
+        if (likeButton.classList.contains('button-like_active')) {
+            unlikeCard(item.id)
+            .then(unlikedCard => {
+                likesCount.textContent = unlikedCard.likesCount;
+                likeButton.classList.remove('button-like_active');
+            })
+            .catch(alert)
+        } else {
+            likeCard(item.id)
+            .then(likedCard => {
+                likesCount.textContent = likedCard.likesCount;
+                likeButton.classList.add('button-like_active');
+            })
+            .catch(alert)
+        }
+    });
+
     return card;
-
    }
-
 
 function deleteItem(clickEvent) { // удаление карточки
     const buttonTrash = clickEvent.target;

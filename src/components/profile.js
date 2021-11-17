@@ -55,10 +55,12 @@ function saveEditProfile(submitEvent) {
         name: newUserName,
         about: newProfileDescription
     })
-    .then(showUser) // запрос успешен - показать нового юзера
+    .then(user => {
+        showUser(user);
+        closePopup(popupProfile);
+    }) // запрос успешен - показать нового юзера
     .catch(alert)   // неуспешен - вывести сообщение с ошибкой
     .finally(() => {
-        closePopup(popupProfile);
         saveProfileButton.textContent = "Сохранить";
     }); // в любом случае - закрыть попап
 }
@@ -100,10 +102,10 @@ function saveEditAvatar(submitEvent) {
     saveAvatarButton.textContent = "Сохранение...";
     const newSrc = avatarForm.elements['avatar-link'].value; // присвоить переменной значение интпута
     updateUserAvatar(newSrc)
-    .then( () => avatarImage.src = newSrc) // запрос успешен - показать нового юзера
-    .catch(alert)   // неуспешен - вывести сообщение с ошибкой
-    .finally(() => {
+    .then( () => {
+        avatarImage.src = newSrc;
         closePopup(popupAvatar);
-        saveAvatarButton.textContent = "Сохранить";
-    }); // в любом случае - закрыть попап
+    }) // запрос успешен - показать нового юзера
+    .catch(alert)   // неуспешен - вывести сообщение с ошибкой
+    .finally(() => saveAvatarButton.textContent = "Сохранить"); // в любом случае - закрыть попап
 }

@@ -35,14 +35,10 @@ function initComponents() { //подключение кнопок и мод.ок
 }
 
 function initContent() {
-    loadUser().then(user => {
+    Promise.all([loadUser(), loadCards()])
+    .then(([user, cards]) => {
         showUser(user);
         setUserId(user.id);
-    })
-    .catch(alert);
-
-    initialCards.forEach(addItem);
-    loadCards().then(cards => {
         cards.forEach(addItem);
     })
     .catch(alert);
