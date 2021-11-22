@@ -4,7 +4,12 @@ import {initEditProfile, initEditProfileForm, showUser, setUserId, initEditAvata
 import { initCards } from '../components/card.js';
 import {initModal} from '../components/modal.js';
 import {enableValidation} from '../components/validate.js';
-import {loadCards, loadUser} from '../components/api.js';
+import {loadCards, loadUser, Api} from '../components/api.js';
+
+const baseUrl = 'https://mesto.nomoreparties.co/v1/plus-cohort-3/';
+const token = '601ed199-89d3-4904-a997-8272583014cc';
+
+const api = new Api (baseUrl, token);
 
 function initComponents() { //подключение кнопок и мод.окон
 
@@ -34,7 +39,7 @@ function initComponents() { //подключение кнопок и мод.ок
 }
 
 function initContent() {
-    Promise.all([loadUser(), loadCards()])
+    Promise.all([api.loadUser(), api.loadCards()]) //заменила вызов функций на методы api
     .then(([user, cards]) => {
         showUser(user);
         setUserId(user.id);
