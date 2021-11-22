@@ -1,5 +1,4 @@
 import './index.css';
-import {initialCards} from '../components/card.js';
 import {initAddItemForm, initAddItem, addItem} from '../components/addItem.js';
 import {initEditProfile, initEditProfileForm, showUser, setUserId, initEditAvatar, initEditAvatarForm} from '../components/profile.js';
 import { initCards } from '../components/card.js';
