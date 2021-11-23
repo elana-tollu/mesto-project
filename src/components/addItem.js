@@ -1,5 +1,5 @@
-import { createCard } from "./card.js";
 import { openPopup, closePopup } from "./modal.js";
+import { Card } from '../components/card.js';
 import { setSubmitButtonState } from "./validate.js";
 import { addCard } from "./api.js";
 
@@ -8,6 +8,7 @@ const popupAddItem = document.querySelector('.popup_add-item');
 const buttonAdd = document.querySelector('.button-add');  // Найти кнопку с +
 const addItemButtonCancel = document.querySelector('.popup__button-close_add-item');
 const submitButton = addItemForm.querySelector('.popup__button-save_add-item');
+const elements = document.querySelector('.elements__list'); // найти контейнер карточек
 
 export function initAddItem() {
     buttonAdd.addEventListener('click', showAddItem);  // Прицепить listener
@@ -50,7 +51,8 @@ function cancelAddItem() {
     closePopup(popupAddItem);
 }
 
-export function addItem(card) { // добавление карточки
-    elements.prepend(createCard(card))
+export function addItem(cardData) { // добавление карточки
+    const card = new Card(cardData, '#card-template'); //создаем экземпляр класса Card
+    elements.prepend(card.makeElement()); //вставляем карточку в ДОМ
 }
 
