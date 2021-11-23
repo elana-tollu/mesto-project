@@ -98,7 +98,7 @@ export function updateUserAvatar(link) {
     });
 }
 
-export function addCard(card) { // попыталась написать функцию
+export function addCard(card) {
     return request({
         method: 'POST',
         resource: 'cards',

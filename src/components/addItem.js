@@ -7,7 +7,6 @@ const addItemForm = document.querySelector('#add-item');
 const popupAddItem = document.querySelector('.popup_add-item');
 const buttonAdd = document.querySelector('.button-add');  // Найти кнопку с +
 const addItemButtonCancel = document.querySelector('.popup__button-close_add-item');
-const elements = document.querySelector('.elements__list'); // найти контейнер карточек
 const submitButton = addItemForm.querySelector('.popup__button-save_add-item');
 
 export function initAddItem() {
