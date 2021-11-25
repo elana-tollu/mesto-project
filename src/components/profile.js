@@ -1,4 +1,4 @@
-import { openPopup, closePopup } from "./modal.js";
+import { openPopup, closePopup } from "./popup.js";
 import { updateUser, updateUserAvatar } from "./api.js";
 
 const popupProfile = document.querySelector('.popup_edit-profile');
@@ -37,7 +37,7 @@ export function initEditProfileForm () { //мод.окно редактиров�
 }
 
 function showEditProfile() {
-    openPopup(popupProfile);
+ //   openPopup(popupProfile);
     const currentUserName = profileInfo.querySelector('.profile__name').textContent; // присвоить переменной текстовое содержимое узла ДОМ
     const currentProfileDescription = profileInfo.querySelector('.profile__description').textContent;
     profileForm.elements['user-name'].value = currentUserName;
@@ -56,7 +56,7 @@ function saveEditProfile(submitEvent) {
     })
     .then(user => {
         showUser(user);
-        closePopup(popupProfile);
+ //       closePopup(popupProfile);
     }) // запрос успешен - показать нового юзера
     .catch(alert)   // неуспешен - вывести сообщение с ошибкой
     .finally(() => {
@@ -65,7 +65,7 @@ function saveEditProfile(submitEvent) {
 }
 
 function cancelEditProfile() {
-    closePopup(popupProfile);
+ //   closePopup(popupProfile);
 }
 
 // найти кнопку, по клику открыть попап редактирования аватара
@@ -82,13 +82,13 @@ export function initEditAvatar() {
 }
 
 function showEditAvatar() {
-    openPopup(popupAvatar);
+ //   openPopup(popupAvatar);
     const currentSrc = avatarImage.src; // присвоить переменной текстовое содержимое узла ДОМ
     avatarForm.elements['avatar-link'].value = currentSrc;
 }
 
 function cancelEditAvatar() {
-    closePopup(popupAvatar);
+ //   closePopup(popupAvatar);
 }
 
 
@@ -103,7 +103,7 @@ function saveEditAvatar(submitEvent) {
     updateUserAvatar(newSrc)
     .then( () => {
         avatarImage.src = newSrc;
-        closePopup(popupAvatar);
+ //       closePopup(popupAvatar);
     }) // запрос успешен - показать нового юзера
     .catch(alert)   // неуспешен - вывести сообщение с ошибкой
     .finally(() => saveAvatarButton.textContent = "Сохранить"); // в любом случае - закрыть попап

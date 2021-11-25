@@ -1,4 +1,4 @@
-import { openPopup, closePopup } from "./modal.js";
+import { openPopup, closePopup } from "./popup.js";
 import { Card } from '../components/card.js';
 import { setSubmitButtonState } from "./validate.js";
 import { addCard } from "./api.js";
@@ -21,7 +21,7 @@ export function initAddItemForm () { //мод.окно добавления ка
 }
 
 function showAddItem() {
-    openPopup(popupAddItem);
+ //   openPopup(popupAddItem);
     setSubmitButtonState(addItemForm, false, {
         submitButtonSelector: '.popup__button-save'
     });
@@ -39,7 +39,7 @@ function saveAddItem(submitEvent) {
     .then(newCard => {
         addItem(newCard);
         itemForm.reset();
-        closePopup(popupAddItem);
+ //       closePopup(popupAddItem);
     }) // запрос успешен - показать новую карточку
     .catch(alert)   // неуспешен - вывести сообщение с ошибкой
     .finally(() => {
@@ -48,7 +48,7 @@ function saveAddItem(submitEvent) {
 }
 
 function cancelAddItem() {
-    closePopup(popupAddItem);
+ //   closePopup(popupAddItem);
 }
 
 export function addItem(cardData) { // добавление карточки

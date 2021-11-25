@@ -9,7 +9,7 @@ import {
     initEditAvatarForm,
 } from "../components/profile.js";
 import { initCards, Card } from "../components/card.js";
-import { initModal } from "../components/modal.js";
+import { Popup } from "../components/popup.js";
 import { enableValidation } from "../components/validate.js";
 import { Api } from "../components/api.js";
 
@@ -25,8 +25,6 @@ function initComponents() {
     initAddItem();
 
     initEditProfile();
-
-    initModal();
 
     initEditProfileForm();
 
@@ -45,6 +43,9 @@ function initComponents() {
         inputErrorClass: "popup__form-field_type_error",
         submitButtonSelector: ".popup__button-save",
     });
+
+    const popupProfile = new Popup('.popup_edit-profile');
+    popupProfile.setEventListeners();
 }
 
 function initContent() {

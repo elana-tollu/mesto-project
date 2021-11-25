@@ -1,4 +1,4 @@
-import { openPopup, closePopup } from "./modal.js";
+import { openPopup, closePopup } from "./popup.js";
 import { deleteCard, likeCard, unlikeCard } from "./api.js";
 import { getUserId } from "./profile.js";
 
@@ -88,10 +88,10 @@ function openImage(clickEvent) {
     popupImage.alt = cardImage.alt;
     const popupTitle = popupItem.querySelector(".element__name_open");
     popupTitle.textContent = cardImage.alt;
-    openPopup(popupItem);
+ //   openPopup(popupItem);
 }
 
 function closePopupImage() {
     //сворачивание мод.окна карточки
-    closePopup(popupItem);
+ //   closePopup(popupItem);
 }
