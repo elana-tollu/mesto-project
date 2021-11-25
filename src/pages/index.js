@@ -10,6 +10,7 @@ import {
 } from "../components/profile.js";
 import { initCards, Card } from "../components/card.js";
 import { Popup } from "../components/popup.js";
+import { PopupWithImage } from '../components/popupWithImage.js';
 import { enableValidation } from "../components/validate.js";
 import { Api } from "../components/api.js";
 
@@ -44,22 +45,22 @@ function initComponents() {
         submitButtonSelector: ".popup__button-save",
     });
 
-    const popupProfile = new Popup('.popup_edit-profile');
-    popupProfile.setEventListeners();
+
+    const popupImage = new PopupWithImage('.popup_image');
+    popupImage.setEventListeners();
+
+    Promise.all([api.loadUser(), api.loadCards()]) //заменила вызов функций на методы api
+    .then(([user, cards]) => {
+        showUser(user);
+        setUserId(user.id);
+        cards.forEach((cardData) => {
+            const card = new Card(cardData, "#card-template", () => popupImage.open(cardData.link, cardData.name)); //создаем экземпляр класса Card
+            elements.append(card.makeElement()); //вставляем карточку в ДОМ
+        });
+    })
+    .catch(alert);
 }
 
-function initContent() {
-    Promise.all([api.loadUser(), api.loadCards()]) //заменила вызов функций на методы api
-        .then(([user, cards]) => {
-            showUser(user);
-            setUserId(user.id);
-            cards.forEach((cardData) => {
-                const card = new Card(cardData, "#card-template"); //создаем экземпляр класса Card
-                elements.append(card.makeElement()); //вставляем карточку в ДОМ
-            });
-        })
-        .catch(alert);
-}
 
 initComponents(); // При загрузке скрипта инициализировать кнопки
-initContent();
+

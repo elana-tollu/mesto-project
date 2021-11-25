@@ -9,9 +9,10 @@ const popupImageButtonClose = document.querySelector(
 const cards = document.querySelector(".elements__list"); // контейнер карточек
 
 export class Card {
-    constructor(cardData, templateSelector) {
+    constructor(cardData, templateSelector, handleCardClick) {
         this._cardData = cardData;
         this._templateSelector = templateSelector;
+        this._handleCardClick = handleCardClick;
     }
 
     makeElement() {
@@ -31,7 +32,7 @@ export class Card {
         const image = card.querySelector(".element__image"); // найти карточку
         image.src = this._cardData.link; // присвоить значения
         image.alt = this._cardData.name;
-        image.addEventListener("click", openImage); // прицепить слушатель
+        image.addEventListener("click", () => this._handleCardClick()); // прицепить слушатель
 
         const heading = card.querySelector(".element__name"); // найти заголовок
         heading.textContent = this._cardData.name; // присвоить значение
@@ -64,6 +65,7 @@ export class Card {
 
         return card;
     }
+
 }
 
 export function initCards() {
