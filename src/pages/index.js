@@ -11,6 +11,7 @@ import {
 import { initCards, Card } from "../components/card.js";
 import { Popup } from "../components/popup.js";
 import { PopupWithImage } from '../components/popupWithImage.js';
+import { PopupWithForm } from '../components/popupWithForm.js';
 import { enableValidation } from "../components/validate.js";
 import { Api } from "../components/api.js";
 
@@ -48,6 +49,16 @@ function initComponents() {
 
     const popupImage = new PopupWithImage('.popup_image');
     popupImage.setEventListeners();
+
+    const popupEditAvatar = new PopupWithForm('.popup_edit-avatar', console.log);
+    popupEditAvatar.setEventListeners();
+
+    const popupEditProfile = new PopupWithForm('.popup_edit-profile', console.log);
+    popupEditProfile.setEventListeners();
+
+    const popupAddItem = new PopupWithForm('.popup_add-item', console.log);
+    popupAddItem.setEventListeners();
+
 
     Promise.all([api.loadUser(), api.loadCards()]) //заменила вызов функций на методы api
     .then(([user, cards]) => {
