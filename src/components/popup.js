@@ -24,6 +24,8 @@ export class Popup {
     setEventListeners() {
         const overlay = this._popup.querySelector('.popup__overlay');
         overlay.addEventListener('click', () => this.close());
+        const buttonClose = this._popup.querySelector('.popup__button-close');
+        buttonClose.addEventListener('click', () => this.close());
     }
 }
 

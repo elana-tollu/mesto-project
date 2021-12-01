@@ -1,11 +1,8 @@
 import './index.css'; // двойные кавычки импользуются только в .html
-import { initAddItemForm, initAddItem } from '../components/addItem.js';
 import {
-    setUserId,
-    initEditAvatar,
-    initEditAvatarForm,
+    setUserId
 } from '../components/profile.js';
-import { initCards, Card } from '../components/Card.js';
+import { Card } from '../components/Card.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { enableValidation } from '../components/validate.js';
@@ -17,20 +14,12 @@ const baseUrl = 'https://mesto.nomoreparties.co/v1/plus-cohort-3/';
 const token = '601ed199-89d3-4904-a997-8272583014cc';
 
 const api = new Api(baseUrl, token);
-const elements = document.querySelector('.elements__list'); // найти контейнер карточек
+const buttonEditProfile = document.querySelector('.button-edit_profile');  // Найти кнопку с карандашом
+const buttonEditAvatar = document.querySelector('.button-edit_avatar');
+const buttonAdd = document.querySelector('.button-add');  // Найти кнопку с +
+
 
 function initComponents() {
-    //подключение кнопок и мод.окон
-
-    initAddItem();
-
-    initEditAvatar();
-
-    initEditAvatarForm();
-
-    initAddItemForm();
-
-    initCards();
 
     enableValidation({
         formSelector: '.popup__form',
@@ -46,6 +35,8 @@ function initComponents() {
 
     const popupEditAvatar = new PopupWithForm('.popup_edit-avatar', console.log);
     popupEditAvatar.setEventListeners();
+    buttonEditAvatar.addEventListener('click', () => popupEditAvatar.open());
+
 
     const userInfo = new UserInfo (
         {selectorName: '.profile__name',
@@ -64,9 +55,11 @@ function initComponents() {
         .then(userData => userInfo.setUserInfo(userData))
     } );
     popupEditProfile.setEventListeners();
+    buttonEditProfile.addEventListener('click', () => popupEditProfile.open());
 
     const popupAddItem = new PopupWithForm('.popup_add-item', console.log);
     popupAddItem.setEventListeners();
+    buttonAdd.addEventListener('click', () => popupAddItem.open());
 
     Promise.all([userInfo.getUserInfo(), api.loadCards()]) //заменила вызов функций на методы api
     .then(([user, cards]) => {

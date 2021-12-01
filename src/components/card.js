@@ -68,10 +68,6 @@ export class Card {
 
 }
 
-export function initCards() {
-    popupImageButtonClose.addEventListener("click", closePopupImage);
-}
-
 function deleteItem(clickEvent) {
     // удаление карточки
     const buttonTrash = clickEvent.target;

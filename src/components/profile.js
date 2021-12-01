@@ -4,7 +4,6 @@ import { updateUser, updateUserAvatar } from "./Api.js";
 const popupProfile = document.querySelector('.popup_edit-profile');
 const profileInfo = document.querySelector('.profile__info');
 const profileForm = document.forms['edit-profile'];
-const buttonEdit = document.querySelector('.button-edit_profile');  // Найти кнопку с карандашом
 const popupButtonCancel = document.querySelector('.popup__button-close_profile');
 const editProfileForm = document.querySelector('#edit-profile');  // Найти форму редактирования профиля
 const userName = profileInfo.querySelector('.profile__name');
@@ -68,7 +67,6 @@ function cancelEditProfile() {
 
 // найти кнопку, по клику открыть попап редактирования аватара
 const popupAvatar = document.querySelector('.popup_edit-avatar');
-const buttonEditAvatar = document.querySelector('.button-edit_avatar');
 const buttonCancelAvatar = document.querySelector('.popup__button-close_edit-avatar');
 const avatarImage = document.querySelector('.profile__avatar'); // присвоить переменной текстовое содержимое узла ДОМ
 const avatarForm = document.forms['edit-avatar'];
