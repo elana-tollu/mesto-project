@@ -1,7 +1,7 @@
-import { openPopup, closePopup } from "./popup.js";
-import { Card } from '../components/card.js';
+import { openPopup, closePopup } from "./Popup.js";
+import { Card } from './Card.js';
 import { setSubmitButtonState } from "./validate.js";
-import { addCard } from "./api.js";
+import { addCard } from "./Api.js";
 
 const addItemForm = document.querySelector('#add-item');
 const popupAddItem = document.querySelector('.popup_add-item');

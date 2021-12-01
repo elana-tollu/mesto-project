@@ -1,5 +1,5 @@
-import { openPopup, closePopup } from "./popup.js";
-import { updateUser, updateUserAvatar } from "./api.js";
+import { openPopup, closePopup } from "./Popup.js";
+import { updateUser, updateUserAvatar } from "./Api.js";
 
 const popupProfile = document.querySelector('.popup_edit-profile');
 const profileInfo = document.querySelector('.profile__info');

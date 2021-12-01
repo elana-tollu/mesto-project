@@ -35,6 +35,19 @@ export class Api {
         }));
     }
 
+    updateUser({name, about}) {
+        return this._request({
+            method: 'PATCH',
+            resource: 'users/me',
+            data: {name, about}
+        })
+        .then(user => ({
+            name: user.name,
+            about: user.about,
+            avatar: user.avatar
+        }));
+    }
+
     loadCards() {
         return this._request({
             method: 'GET',
@@ -77,18 +90,7 @@ function request({method, resource, data}) {
 
 
 
-export function updateUser({name, about}) {
-    return request({
-        method: 'PATCH',
-        resource: 'users/me',
-        data: {name, about}
-    })
-    .then(user => ({
-        name: user.name,
-        about: user.about,
-        avatar: user.avatar
-    }));
-}
+
 
 export function updateUserAvatar(link) {
     return request({

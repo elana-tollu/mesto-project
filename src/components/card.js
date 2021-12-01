@@ -1,5 +1,5 @@
-import { openPopup, closePopup } from "./popup.js";
-import { deleteCard, likeCard, unlikeCard } from "./api.js";
+import { openPopup, closePopup } from "./Popup.js";
+import { deleteCard, likeCard, unlikeCard } from "./Api.js";
 import { getUserId } from "./profile.js";
 
 const popupItem = document.querySelector(".popup_image");
