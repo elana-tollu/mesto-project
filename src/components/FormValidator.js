@@ -14,19 +14,7 @@ export class FormValidator {
         );
     }
 
-    ///метод добавления класса ошибки
-    _showInputError(input) {
-        input.classList.add(this._inputErrorClass);
-        this._errorContainer.textContent = input.validationMessage;
-    }
-
-    ///метод удаления класса ошибки
-    _hideInputError(input) {
-        input.classList.remove(this._inputErrorClass);
-        this._errorContainer.textContent = "";
-    }
-
-    ///метод оперделения невалидного поля
+    //оперделение невалидного поля
     _isValid(input) {
         if (!input.validity.valid) {
             this._showInputError(input);
@@ -34,26 +22,7 @@ export class FormValidator {
             this._hideInputError(input);
         }
     }
-
-    /// поверка на невалидный инпут
-    _hasInvalidInput() {
-        return this._inputList.every(function (input) {
-            return input.validity.valid;
-        });
-    }
-
-    /// функция блокировки/разблокировки кнопки
-    setSubmitButtonState() {
-        if (!this._hasInvalidInput()) {
-            //this._submitButton.classList.add(this._inactiveButtonClass);
-            this._submitButton.disabled = true;
-        } else {
-            //this._submitButton.classList.remove(this._inactiveButtonClass);
-            this._submitButton.disabled = false;
-        }
-    }
-
-    //наложение поиска валидных инпутов на все инпуты формы
+    //поиск валидных инпутов во всех инпутах формы
     _checkInputValidity() {
         this.setSubmitButtonState();
         this._inputList.forEach((input) => {
@@ -65,6 +34,34 @@ export class FormValidator {
                 this._isValid(input);
             });
         });
+    }
+
+    // поверка на невалидный инпут
+    _hasInvalidInput() {
+        return this._inputList.every(function (input) {
+            return input.validity.valid;
+        });
+    }
+
+    //блокировка/разблокировка кнопки
+    setSubmitButtonState() {
+        if (!this._hasInvalidInput()) {
+            this._submitButton.disabled = true;
+        } else {
+            this._submitButton.disabled = false;
+        }
+    }
+
+    //добавление ошибки
+    _showInputError(input) {
+        input.classList.add(this._inputErrorClass);
+        this._errorContainer.textContent = input.validationMessage;
+    }
+
+    //удаление ошибки
+    _hideInputError(input) {
+        input.classList.remove(this._inputErrorClass);
+        this._errorContainer.textContent = "";
     }
 
     ///наложения слушателя для валидации инпутов конкретной формы
