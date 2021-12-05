@@ -1,7 +1,3 @@
-import { deleteCard, likeCard, unlikeCard } from "./Api.js";
-
-const popupItem = document.querySelector(".popup_image");
-
 export class Card {
     constructor(
         cardData,

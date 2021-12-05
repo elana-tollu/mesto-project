@@ -28,10 +28,6 @@ function initComponents() {
 
     popupImage.setEventListeners();
 
-    const popupEditAvatar = new PopupWithForm('.popup_edit-avatar', console.log);
-    popupEditAvatar.setEventListeners();
-    buttonEditAvatar.addEventListener('click', () => popupEditAvatar.open());
-
     const userInfo = new UserInfo (
         {selectorName: '.profile__name',
          selectorDescription: '.profile__description',
@@ -40,6 +36,17 @@ function initComponents() {
          updateUser: (userData) => api.updateUser(userData)
         }
     );
+
+    const popupEditAvatar = new PopupWithForm(
+        '.popup_edit-avatar',
+        (formData) => {
+            api.updateUserAvatar(formData['avatar-link'])
+            .then(user => userInfo.renderUserInfo(user))
+            .catch(alert);
+        }
+    );
+    popupEditAvatar.setEventListeners();
+    buttonEditAvatar.addEventListener('click', () => popupEditAvatar.open());
 
     const cardsSection = new Section(
         { renderer: cardData => new Card(

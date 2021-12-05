@@ -48,6 +48,14 @@ export class Api {
         }))
     }
 
+    updateUserAvatar(link) {
+        return this._request({
+            method: 'PATCH',
+            resource: 'users/me/avatar',
+            data: {avatar: link}
+        });
+    }
+
     loadCards() {
         return this._request({
             method: 'GET',
@@ -101,7 +109,7 @@ export class Api {
     }
 
     unlikeCard(cardId) {
-        return request({
+        return this._request({
             method: 'DELETE',
             resource: `cards/likes/${cardId}`
         })
@@ -117,38 +125,9 @@ export class Api {
     }
 
     deleteCard(cardId) {
-        return request({
+        return this._request({
             method: 'DELETE',
             resource: `cards/${cardId}`
         });
     }
-}
-
-function request({method, resource, data}) {
-    const baseUrl = 'https://mesto.nomoreparties.co/v1/plus-cohort-3/';
-    const token = '601ed199-89d3-4904-a997-8272583014cc';
-
-    return fetch(`${baseUrl}${resource}`, {
-        method,
-        headers: {
-            Authorization: token,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    .then ((response) => {
-        if (response.ok) {
-            return response.json()
-        } else {
-            return Promise.reject(`Ошибка: ${response.status} ${response.statusText}`);
-        }
-    })
-}
-
-export function updateUserAvatar(link) {
-    return request({
-        method: 'PATCH',
-        resource: 'users/me/avatar',
-        data: {avatar: link}
-    });
 }
