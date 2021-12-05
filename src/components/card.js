@@ -19,7 +19,7 @@ export class Card {
 
         const trashButton = card.querySelector(".element__button-trash"); //найти кнопку удаления
         if (this._getCurrentUserId() === this._cardData.ownerId) {
-            trashButton.addEventListener("click", deleteItem); // прицепить слушатель
+            trashButton.addEventListener("click", (clickEvent) => this._deleteItem(clickEvent)); // прицепить слушатель
         } else {
             trashButton.remove();
         }
@@ -61,30 +61,13 @@ export class Card {
         return card;
     }
 
-}
-
-function deleteItem(clickEvent) {
-    // удаление карточки
-    const buttonTrash = clickEvent.target;
-    const item = buttonTrash.closest(".element");
-    const cardId = item.dataset.cardId;
-    deleteCard(cardId)
-        .then(() => item.remove())
-        .catch(alert);
-}
-
-function openImage(clickEvent) {
-    //открывание мод.окна карточки
-    const cardImage = clickEvent.target;
-    const popupImage = popupItem.querySelector(".element__image_open");
-    popupImage.src = cardImage.src;
-    popupImage.alt = cardImage.alt;
-    const popupTitle = popupItem.querySelector(".element__name_open");
-    popupTitle.textContent = cardImage.alt;
- //   openPopup(popupItem);
-}
-
-function closePopupImage() {
-    //сворачивание мод.окна карточки
- //   closePopup(popupItem);
+    _deleteItem(clickEvent) {
+        // удаление карточки
+        const buttonTrash = clickEvent.target;
+        const item = buttonTrash.closest(".element");
+        const cardId = item.dataset.cardId;
+        deleteCard(cardId)
+            .then(() => item.remove())
+            .catch(alert);
+    }
 }
