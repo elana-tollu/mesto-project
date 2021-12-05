@@ -18,10 +18,14 @@ export class UserInfo {
 
     setUserInfo(userData) {
         this._updateUser(userData).then ( user => {
-            this._elementName.textContent = user.name;
-            this._elementDescription.textContent = user.about;
-            this._elementAvatar.src = user.avatar;
+            renderUserInfo(user);
         })
         //.catch(alert);
+    }
+
+    renderUserInfo(user) {
+        this._elementName.textContent = user.name;
+        this._elementDescription.textContent = user.about;
+        this._elementAvatar.src = user.avatar;
     }
 }

@@ -70,7 +70,7 @@ function initComponents() {
 
     Promise.all([userInfo.getUserInfo(), api.loadCards()]) //заменила вызов функций на методы api
     .then(([user, cards]) => {
-        userInfo.setUserInfo(user);
+        userInfo.renderUserInfo(user);
         setUserId(user.id);
         cards.reverse().forEach(card => cardsSection.renderItem(card));
     })

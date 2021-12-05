@@ -1,14 +1,10 @@
-import { openPopup, closePopup } from "./Popup.js";
-import { updateUser, updateUserAvatar } from "./Api.js";
+import { updateUserAvatar } from "./Api.js";
 
-const popupProfile = document.querySelector('.popup_edit-profile');
 const profileInfo = document.querySelector('.profile__info');
 const profileForm = document.forms['edit-profile'];
 const popupButtonCancel = document.querySelector('.popup__button-close_profile');
-const editProfileForm = document.querySelector('#edit-profile');  // Найти форму редактирования профиля
 const userName = profileInfo.querySelector('.profile__name');
 const userDescription = profileInfo.querySelector('.profile__description');
-const saveProfileButton = profileForm.querySelector('.popup__button-save');
 const userAvatar = document.querySelector('.profile__avatar');
 let _userId;
 
