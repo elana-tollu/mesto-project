@@ -6,15 +6,7 @@ const popupButtonCancel = document.querySelector('.popup__button-close_profile')
 const userName = profileInfo.querySelector('.profile__name');
 const userDescription = profileInfo.querySelector('.profile__description');
 const userAvatar = document.querySelector('.profile__avatar');
-let _userId;
 
-export function setUserId (userId) {
-    _userId = userId;
-}
-
-export function getUserId () {
-    return _userId;
-}
 
 export function showUser(user) {
     userName.textContent = user.name; // найти элементы профиля и задать текстовое содержимое элементам на странице

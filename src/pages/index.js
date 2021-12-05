@@ -1,5 +1,4 @@
 import './index.css'; // двойные кавычки импользуются только в .html
-import { setUserId } from '../components/profile.js';
 import { Card } from '../components/Card.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
@@ -16,10 +15,6 @@ const buttonEditProfile = document.querySelector('.button-edit_profile');  // Н
 const buttonEditAvatar = document.querySelector('.button-edit_avatar');
 const buttonAdd = document.querySelector('.button-add');  // Найти кнопку с +
 const popupImage = new PopupWithImage('.popup_image');
-const cardsSection = new Section(
-    { renderer: renderCard },
-    '.elements__list'
-);
 
 function initComponents() {
 
@@ -44,7 +39,18 @@ function initComponents() {
          loadUser: () => api.loadUser(),
          updateUser: (userData) => api.updateUser(userData)
         }
-    )
+    );
+
+    const cardsSection = new Section(
+        { renderer: cardData => new Card(
+                cardData,
+                '#card-template',
+                () => popupImage.open(cardData.link, cardData.name),
+                () => userInfo.getUserId()
+            ).makeElement()
+        },
+        '.elements__list'
+    );
 
     const popupEditProfile = new PopupWithForm('.popup_edit-profile', formData => {
         userInfo.setUserInfo({
@@ -70,15 +76,14 @@ function initComponents() {
     Promise.all([userInfo.getUserInfo(), api.loadCards()]) //заменила вызов функций на методы api
     .then(([user, cards]) => {
         userInfo.renderUserInfo(user);
-        setUserId(user.id);
+        userInfo.setUserId(user.id);
         cards.reverse().forEach(card => cardsSection.renderItem(card));
     })
     .catch(alert);
 }
 
 function renderCard(cardData) {
-    return new Card(cardData, '#card-template',
-        () => popupImage.open(cardData.link, cardData.name)).makeElement()
+
 }
 
 

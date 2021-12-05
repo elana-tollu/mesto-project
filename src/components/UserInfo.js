@@ -28,4 +28,12 @@ export class UserInfo {
         this._elementDescription.textContent = user.about;
         this._elementAvatar.src = user.avatar;
     }
+
+    setUserId(userId) {
+        this._userId = userId;
+    }
+
+    getUserId() {
+        return this._userId;
+    }
 }
