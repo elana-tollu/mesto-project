@@ -8,25 +8,12 @@ const userDescription = profileInfo.querySelector('.profile__description');
 const userAvatar = document.querySelector('.profile__avatar');
 
 
-export function showUser(user) {
-    userName.textContent = user.name; // найти элементы профиля и задать текстовое содержимое элементам на странице
-    userDescription.textContent = user.about;
-    userAvatar.src = user.avatar; // задать аватар по .src
-}
-
-export function initEditProfile() {
-    buttonEdit.addEventListener('click', showEditProfile);  // Прицепить listener
-    popupButtonCancel.addEventListener('click', cancelEditProfile);
-}
-
-
 
 function showEditProfile() {
  //   openPopup(popupProfile);
     const currentUserName = profileInfo.querySelector('.profile__name').textContent; // присвоить переменной текстовое содержимое узла ДОМ
     const currentProfileDescription = profileInfo.querySelector('.profile__description').textContent;
-    profileForm.elements['user-name'].value = currentUserName;
-    profileForm.elements['user-description'].value = currentProfileDescription;
+
 }
 
 function cancelEditProfile() {

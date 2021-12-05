@@ -7,6 +7,12 @@ export class PopupWithForm extends Popup {
         this._form = this._popup.querySelector('.popup__form');
     }
 
+    prefillForm(formData) {
+        for (const [name, value] of Object.entries(formData)) {
+            this._form.elements[name].value = value;
+        }
+    }
+
     setEventListeners() {
         super.setEventListeners();
         this._form.addEventListener('submit', () => {

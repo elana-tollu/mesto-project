@@ -36,4 +36,12 @@ export class UserInfo {
     getUserId() {
         return this._userId;
     }
+
+    getName() {
+        return this._elementName.textContent;
+    }
+
+    getDescription() {
+        return this._elementDescription.textContent;
+    }
 }

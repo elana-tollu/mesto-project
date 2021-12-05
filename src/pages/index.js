@@ -60,7 +60,13 @@ function initComponents() {
         .catch(alert);
     } );
     popupEditProfile.setEventListeners();
-    buttonEditProfile.addEventListener('click', () => popupEditProfile.open());
+    buttonEditProfile.addEventListener('click', () => {
+        popupEditProfile.open();
+        popupEditProfile.prefillForm({
+            'user-name': userInfo.getName(),
+            'user-description': userInfo.getDescription()
+        })
+    });
 
     const popupAddItem = new PopupWithForm('.popup_add-item', cardData => {
         api.addCard({
