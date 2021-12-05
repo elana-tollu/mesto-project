@@ -43,7 +43,7 @@ export class FormValidator {
         });
     }
 
-    //блокировка/разблокировка кнопки
+    //блокировка разблокировка кнопки
     setSubmitButtonState() {
         if (!this._hasInvalidInput()) {
             this._submitButton.disabled = true;
