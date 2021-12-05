@@ -47,7 +47,8 @@ function initComponents() {
                 '#card-template',
                 () => popupImage.open(cardData.link, cardData.name),
                 () => userInfo.getUserId(),
-                (cardId) => api.likeCard(cardId)
+                (cardId) => api.likeCard(cardId),
+                (cardId) => api.unlikeCard(cardId)
             ).makeElement()
         },
         '.elements__list'

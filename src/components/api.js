@@ -99,6 +99,22 @@ export class Api {
         })
         );
     }
+
+    unlikeCard(cardId) {
+        return request({
+            method: 'DELETE',
+            resource: `cards/likes/${cardId}`
+        })
+        .then(card => ({
+            name: card.name,
+            link: card.link,
+            likesCount: card.likes.length,
+            likes: card.likes,
+            id: card._id,
+            ownerId: card.owner._id
+        })
+        );
+    }
 }
 
 
@@ -125,32 +141,12 @@ function request({method, resource, data}) {
     })
 }
 
-
-
-
-
 export function updateUserAvatar(link) {
     return request({
         method: 'PATCH',
         resource: 'users/me/avatar',
         data: {avatar: link}
     });
-}
-
-export function unlikeCard(cardId) {
-    return request({
-        method: 'DELETE',
-        resource: `cards/likes/${cardId}`
-    })
-    .then(card => ({
-        name: card.name,
-        link: card.link,
-        likesCount: card.likes.length,
-        likes: card.likes,
-        id: card._id,
-        ownerId: card.owner._id
-    })
-    );
 }
 
 export function deleteCard(cardId) {

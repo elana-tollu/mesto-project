@@ -17,6 +17,7 @@ export class Card {
         this._handleCardClick = handleCardClick;
         this._getCurrentUserId = getCurrentUserId;
         this._handleCardLike = handleCardLike;
+        this._handleCardUnlike = handleCardUnlike;
     }
 
     makeElement() {
@@ -51,7 +52,7 @@ export class Card {
 
         likeButton.addEventListener("click", () => {
             if (likeButton.classList.contains("button-like_active")) {
-                unlikeCard(this._cardData.id)
+                this._handleCardUnlike(this._cardData.id)
                     .then((unlikedCard) => {
                         likesCount.textContent = unlikedCard.likesCount;
                         likeButton.classList.remove("button-like_active");
