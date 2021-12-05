@@ -1049,6 +1049,8 @@ template {
     height: 282px;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
+    background: url(66f732e1158f2adc4e4b.png);
+    cursor: pointer;
 }
 
 /*!************************************************************************************************************!*\
