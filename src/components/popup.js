@@ -7,15 +7,15 @@ export class Popup {
 
     open() { // открывает мод.окно
         this._popup.classList.add('popup_opened');
-        body.addEventListener('keydown', event => this.handleEscClose(event));
+        body.addEventListener('keydown', event => this._handleEscClose(event));
     }
 
     close() { // закрывает мод.окно
         this._popup.classList.remove('popup_opened');
-        body.removeEventListener('keydown', event => this.handleEscClose(event));
+        body.removeEventListener('keydown', event => this._handleEscClose(event));
     }
 
-    handleEscClose(event) {
+    _handleEscClose(event) {
         if(event.key === 'Escape') {
             this.close();
         }
