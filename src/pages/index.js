@@ -46,7 +46,8 @@ function initComponents() {
                 cardData,
                 '#card-template',
                 () => popupImage.open(cardData.link, cardData.name),
-                () => userInfo.getUserId()
+                () => userInfo.getUserId(),
+                (cardId) => api.likeCard(cardId)
             ).makeElement()
         },
         '.elements__list'
@@ -87,11 +88,6 @@ function initComponents() {
     })
     .catch(alert);
 }
-
-function renderCard(cardData) {
-
-}
-
 
 initComponents(); // При загрузке скрипта инициализировать кнопки
 

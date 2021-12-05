@@ -83,6 +83,22 @@ export class Api {
             ownerId: card.owner._id
         }));
     }
+
+    likeCard(cardId) {
+        return this._request({
+            method: 'PUT',
+            resource: `cards/likes/${cardId}`
+        })
+        .then(card => ({
+            name: card.name,
+            link: card.link,
+            likesCount: card.likes.length,
+            likes: card.likes,
+            id: card._id,
+            ownerId: card.owner._id
+        })
+        );
+    }
 }
 
 
@@ -119,23 +135,6 @@ export function updateUserAvatar(link) {
         resource: 'users/me/avatar',
         data: {avatar: link}
     });
-}
-
-
-export function likeCard(cardId) {
-    return request({
-        method: 'PUT',
-        resource: `cards/likes/${cardId}`
-    })
-    .then(card => ({
-        name: card.name,
-        link: card.link,
-        likesCount: card.likes.length,
-        likes: card.likes,
-        id: card._id,
-        ownerId: card.owner._id
-    })
-    );
 }
 
 export function unlikeCard(cardId) {

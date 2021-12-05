@@ -3,11 +3,20 @@ import { deleteCard, likeCard, unlikeCard } from "./Api.js";
 const popupItem = document.querySelector(".popup_image");
 
 export class Card {
-    constructor(cardData, templateSelector, handleCardClick, getCurrentUserId) {
+    constructor(
+        cardData,
+        templateSelector,
+        handleCardClick,
+        getCurrentUserId,
+        handleCardLike,
+        handleCardUnlike,
+        handleCardDelete
+    ) {
         this._cardData = cardData;
         this._templateSelector = templateSelector;
         this._handleCardClick = handleCardClick;
         this._getCurrentUserId = getCurrentUserId;
+        this._handleCardLike = handleCardLike;
     }
 
     makeElement() {
@@ -49,7 +58,7 @@ export class Card {
                     })
                     .catch(alert);
             } else {
-                likeCard(this._cardData.id)
+                this._handleCardLike(this._cardData.id)
                     .then((likedCard) => {
                         likesCount.textContent = likedCard.likesCount;
                         likeButton.classList.add("button-like_active");
