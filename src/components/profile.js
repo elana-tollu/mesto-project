@@ -41,26 +41,6 @@ function showEditProfile() {
     profileForm.elements['user-description'].value = currentProfileDescription;
 }
 
-// function saveEditProfile(submitEvent) {
-//     submitEvent.preventDefault();  // Не отправлять форму на сервер и не перезагружать страницу
-//     saveProfileButton.textContent = "Сохранение...";
-//     const profileForm = submitEvent.target;
-//     const newUserName = profileForm.elements['user-name'].value; // присвоить переменной значение интпута
-//     const newProfileDescription = profileForm.elements['user-description'].value;// найти инпуты, взять данные из инпутов
-//     updateUser({ // обновить объект, присвоив ключам новые значения
-//         name: newUserName,
-//         about: newProfileDescription
-//     })
-//     .then(user => {
-//         showUser(user);
-//  //       closePopup(popupProfile);
-//     }) // запрос успешен - показать нового юзера
-//     .catch(alert)   // неуспешен - вывести сообщение с ошибкой
-//     .finally(() => {
-//         saveProfileButton.textContent = "Сохранить";
-//     }); // в любом случае - закрыть попап
-// }
-
 function cancelEditProfile() {
  //   closePopup(popupProfile);
 }

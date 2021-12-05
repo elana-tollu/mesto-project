@@ -1,4 +1,3 @@
-import { openPopup, closePopup } from "./Popup.js";
 import { deleteCard, likeCard, unlikeCard } from "./Api.js";
 import { getUserId } from "./profile.js";
 

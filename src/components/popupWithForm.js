@@ -9,8 +9,11 @@ export class PopupWithForm extends Popup {
 
     setEventListeners() {
         super.setEventListeners();
-        const formData = this._getInputValues();
-        this._form.addEventListener('submit', () => this._submitHandler(formData));
+        this._form.addEventListener('submit', () => {
+            const formData = this._getInputValues();
+            this._submitHandler(formData);
+            this.close();
+        });
     }
 
     _getInputValues() {
@@ -19,7 +22,7 @@ export class PopupWithForm extends Popup {
             .reduce((inputValues, input) => { // собираем значения полей в один объект
                 return {
                     ...inputValues, // для нового значения аккумулятора используем все накопленные в нем значения
-                    [input.id]: input.value, // добавляем новое значение из текущего инпута
+                    [input.name]: input.value, // добавляем новое значение из текущего инпута
                 }
             }, {}); // начинаем собирать с пустого объекта
     }

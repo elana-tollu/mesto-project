@@ -19,7 +19,7 @@ export class Api {
             } else {
                 return Promise.reject(`Ошибка: ${response.status} ${response.statusText}`);
             }
-        });
+        })
     }
 
     loadUser() {
@@ -32,7 +32,7 @@ export class Api {
             about: user.about,
             avatar: user.avatar,
             id: user._id
-        }));
+        }))
     }
 
     updateUser({name, about}) {
@@ -45,7 +45,7 @@ export class Api {
             name: user.name,
             about: user.about,
             avatar: user.avatar
-        }));
+        }))
     }
 
     loadCards() {
@@ -62,9 +62,30 @@ export class Api {
                 id: card._id,
                 ownerId: card.owner._id
             }));
-        });
+        })
+    }
+
+    addCard(card) {
+        return this._request({
+            method: 'POST',
+            resource: 'cards',
+            data: {
+                name: card.name,
+                link: card.link
+            }
+        })
+        .then(card => ({
+            name: card.name,
+            link: card.link,
+            likesCount: card.likes.length,
+            likes: card.likes,
+            id: card._id,
+            ownerId: card.owner._id
+        }));
     }
 }
+
+
 
 
 function request({method, resource, data}) {
@@ -85,7 +106,7 @@ function request({method, resource, data}) {
         } else {
             return Promise.reject(`Ошибка: ${response.status} ${response.statusText}`);
         }
-    });
+    })
 }
 
 
@@ -100,24 +121,6 @@ export function updateUserAvatar(link) {
     });
 }
 
-export function addCard(card) {
-    return request({
-        method: 'POST',
-        resource: 'cards',
-        data: {
-            name: card.name,
-            link: card.link
-        }
-    })
-    .then(card => ({
-        name: card.name,
-        link: card.link,
-        likesCount: card.likes.length,
-        likes: card.likes,
-        id: card._id,
-        ownerId: card.owner._id
-    }));
-}
 
 export function likeCard(cardId) {
     return request({
@@ -131,7 +134,8 @@ export function likeCard(cardId) {
         likes: card.likes,
         id: card._id,
         ownerId: card.owner._id
-    }));
+    })
+    );
 }
 
 export function unlikeCard(cardId) {
@@ -146,7 +150,8 @@ export function unlikeCard(cardId) {
         likes: card.likes,
         id: card._id,
         ownerId: card.owner._id
-    }));
+    })
+    );
 }
 
 export function deleteCard(cardId) {

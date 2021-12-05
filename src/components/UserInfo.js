@@ -21,6 +21,7 @@ export class UserInfo {
             this._elementName.textContent = user.name;
             this._elementDescription.textContent = user.about;
             this._elementAvatar.src = user.avatar;
-        });
+        })
+        //.catch(alert);
     }
 }
