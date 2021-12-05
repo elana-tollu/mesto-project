@@ -1,3 +1,21 @@
+<<<<<<< HEAD
+import "./index.css";
+import { initAddItemForm, initAddItem } from "../components/addItem.js";
+import {
+    initEditProfile,
+    initEditProfileForm,
+    showUser,
+    setUserId,
+    initEditAvatar,
+    initEditAvatarForm,
+} from "../components/profile.js";
+import { initCards, Card } from "../components/card.js";
+import { initModal } from "../components/modal.js";
+//import { enableValidation } from "../components/validate.js";
+import { Api } from "../components/api.js";
+import { FormValidator } from "../components/FormValidator.js";
+import { objForm } from "../components/constants.js";
+=======
 import './index.css'; // двойные кавычки импользуются только в .html
 import { Card } from '../components/Card.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
@@ -6,6 +24,7 @@ import { enableValidation } from '../components/validate.js';
 import { Api } from '../components/Api.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { Section } from '../components/Section.js';
+>>>>>>> b90376cd2017a350e6fad6bb39b449fbc0dbc54c
 
 const baseUrl = 'https://mesto.nomoreparties.co/v1/plus-cohort-3/';
 const token = '601ed199-89d3-4904-a997-8272583014cc';
@@ -15,6 +34,25 @@ const buttonEditProfile = document.querySelector('.button-edit_profile');  // Н
 const buttonEditAvatar = document.querySelector('.button-edit_avatar');
 const buttonAdd = document.querySelector('.button-add');  // Найти кнопку с +
 const popupImage = new PopupWithImage('.popup_image');
+
+///запускаем валидацию формы form_edit-profile
+const userFormValidation = new FormValidator(
+    objForm,
+    ".popup__form_edit-profile"
+);
+
+userFormValidation.enableValidation();
+
+///запускаем валидацию формы form_add-item
+const placeFormValidation = new FormValidator(objForm, ".popup__form_add-item");
+placeFormValidation.enableValidation();
+
+//запускаем валидацию формы form_edit-avatar
+const linkFormValidation = new FormValidator(
+    objForm,
+    ".popup__form_edit-avatar"
+);
+linkFormValidation.enableValidation();
 
 function initComponents() {
 
