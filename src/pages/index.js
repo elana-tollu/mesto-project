@@ -47,12 +47,11 @@ function initComponents() {
     )
 
     const popupEditProfile = new PopupWithForm('.popup_edit-profile', formData => {
-        api.updateUser({
+        userInfo.setUserInfo({
             name: formData['user-name'],
             about: formData['user-description']
         })
-        .then(userData => userInfo.setUserInfo(userData))
-        //.catch(alert);
+        .catch(alert);
     } );
     popupEditProfile.setEventListeners();
     buttonEditProfile.addEventListener('click', () => popupEditProfile.open());

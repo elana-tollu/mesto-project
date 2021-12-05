@@ -17,10 +17,10 @@ export class UserInfo {
     }
 
     setUserInfo(userData) {
-        this._updateUser(userData).then ( user => {
-            renderUserInfo(user);
-        })
-        //.catch(alert);
+        return this._updateUser(userData)
+        .then ( user => {
+            this.renderUserInfo(user);
+        });
     }
 
     renderUserInfo(user) {
