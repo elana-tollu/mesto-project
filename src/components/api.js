@@ -115,10 +115,14 @@ export class Api {
         })
         );
     }
+
+    deleteCard(cardId) {
+        return request({
+            method: 'DELETE',
+            resource: `cards/${cardId}`
+        });
+    }
 }
-
-
-
 
 function request({method, resource, data}) {
     const baseUrl = 'https://mesto.nomoreparties.co/v1/plus-cohort-3/';
@@ -148,11 +152,3 @@ export function updateUserAvatar(link) {
         data: {avatar: link}
     });
 }
-
-export function deleteCard(cardId) {
-    return request({
-        method: 'DELETE',
-        resource: `cards/${cardId}`
-    });
-}
-

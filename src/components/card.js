@@ -18,6 +18,7 @@ export class Card {
         this._getCurrentUserId = getCurrentUserId;
         this._handleCardLike = handleCardLike;
         this._handleCardUnlike = handleCardUnlike;
+        this._handleCardDelete = handleCardDelete;
     }
 
     makeElement() {
@@ -72,11 +73,10 @@ export class Card {
     }
 
     _deleteItem(clickEvent) {
-        // удаление карточки
         const buttonTrash = clickEvent.target;
         const item = buttonTrash.closest(".element");
         const cardId = item.dataset.cardId;
-        deleteCard(cardId)
+        this._handleCardDelete(cardId)
             .then(() => item.remove())
             .catch(alert);
     }
