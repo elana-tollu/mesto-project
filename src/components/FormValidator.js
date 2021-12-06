@@ -17,7 +17,7 @@ export class FormValidator {
 
     ///наложения слушателя для валидации инпутов конкретной формы
     enableValidation() {
-        this._form.addEventListener("submit", function (evt) {
+        this._form.addEventListener('submit', function (evt) {
             evt.preventDefault();
         });
         this._setEventListeners();
@@ -25,7 +25,9 @@ export class FormValidator {
 
     _setEventListeners() {
         this._inputList.forEach((inputElement) => {
-            inputElement.addEventListener("input", () => this._isValid(inputElement));
+            inputElement.addEventListener('input', () =>
+                this._isValid(inputElement)
+            );
         });
     }
 
@@ -53,10 +55,17 @@ export class FormValidator {
         inputError.classList.remove(this._errorClass);
         inputError.textContent = '';
     }
+    //метод для очистки ошибок
+    resetValidation() {
+        //this._setSubmitButtonState();
+
+        this._inputList.forEach((inputElement) => {
+            this._hideError(inputElement);
+        });
+    }
 
     //блокировка/разблокировка кнопки
     _setSubmitButtonState() {
         this._submitButton.disabled = !this._form.checkValidity();
     }
-
 }
