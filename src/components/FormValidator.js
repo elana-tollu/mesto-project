@@ -10,6 +10,9 @@ export class FormValidator {
         this._inactiveButtonClass = validationObject.inactiveButtonClass;
         this._errorClass = validationObject.errorClass;
         this._inputErrorClass = validationObject.inputErrorClass;
+        this._buttonElement = this._form.querySelector(
+            validationObject.submitButtonSelector
+        );
     }
 
     ///наложения слушателя для валидации инпутов конкретной формы
@@ -28,10 +31,9 @@ export class FormValidator {
         });
     }
 
-    //блокировка разблокировка кнопки
-    setSubmitButtonState() {
-        if (!this._hasInvalidInput()) {
-            this._submitButton.disabled = true;
+    _isValid(input) {
+        if (!input.validity.valid) {
+            this._showInputError(input);
         } else {
             this._hideInputError(input);
         }
@@ -52,6 +54,14 @@ export class FormValidator {
         const inputError = this._form.querySelector(`.${input.name}-error`);
         inputError.classList.remove(this._errorClass);
         inputError.textContent = '';
+    }
+    //метод для очистки ошибок
+    resetValidation() {
+        this._toggleButtonState();
+
+        this._inputList.forEach((inputElement) => {
+            this._hideError(inputElement);
+        });
     }
 
     //блокировка/разблокировка кнопки

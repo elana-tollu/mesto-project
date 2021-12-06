@@ -59,7 +59,10 @@ function initComponents() {
         }
     );
     popupEditAvatar.setEventListeners();
-    buttonEditAvatar.addEventListener('click', () => popupEditAvatar.open());
+    buttonEditAvatar.addEventListener('click', () => {
+        popupEditAvatar.open();
+        popupEditAvatar.resetValidation();
+    });
 
     const cardsSection = new Section(
         {
@@ -95,6 +98,7 @@ function initComponents() {
             'user-name': userInfo.getName(),
             'user-description': userInfo.getDescription(),
         });
+        //popupEditProfile.resetValidation();
     });
 
     const popupAddItem = new PopupWithForm('.popup_add-item', (cardData) => {
@@ -106,7 +110,10 @@ function initComponents() {
             .catch(alert);
     });
     popupAddItem.setEventListeners();
-    buttonAdd.addEventListener('click', () => popupAddItem.open());
+    buttonAdd.addEventListener('click', () => {
+        popupAddItem.open();
+        popupAddItem.resetValidation();
+    });
 
     Promise.all([userInfo.getUserInfo(), api.loadCards()]) //заменила вызов функций на методы api
         .then(([user, cards]) => {
