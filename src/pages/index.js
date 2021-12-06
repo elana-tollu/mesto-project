@@ -1,4 +1,4 @@
-import './index.css'; // двойные кавычки импользуются только в .html
+import './index.css';
 import { FormValidator } from '../components/FormValidator.js';
 import { objForm } from '../components/constants.js';
 import { Card } from '../components/Card.js';
