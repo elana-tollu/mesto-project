@@ -10,14 +10,11 @@ export class FormValidator {
         this._inactiveButtonClass = validationObject.inactiveButtonClass;
         this._errorClass = validationObject.errorClass;
         this._inputErrorClass = validationObject.inputErrorClass;
-        this._buttonElement = this._form.querySelector(
-            validationObject.submitButtonSelector
-        );
     }
 
     ///наложения слушателя для валидации инпутов конкретной формы
     enableValidation() {
-        this._form.addEventListener("submit", function (evt) {
+        this._form.addEventListener('submit', function (evt) {
             evt.preventDefault();
         });
         this._setEventListeners();
@@ -25,7 +22,7 @@ export class FormValidator {
 
     _setEventListeners() {
         this._inputList.forEach((inputElement) => {
-            inputElement.addEventListener("input", () =>
+            inputElement.addEventListener('input', () =>
                 this._isValid(inputElement)
             );
         });
@@ -54,7 +51,7 @@ export class FormValidator {
         input.classList.remove(this._inputErrorClass);
         const inputError = this._form.querySelector(`.${input.name}-error`);
         inputError.classList.remove(this._errorClass);
-        inputError.textContent = "";
+        inputError.textContent = '';
     }
 
     //блокировка/разблокировка кнопки
