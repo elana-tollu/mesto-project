@@ -57,7 +57,7 @@ export class FormValidator {
     }
     //метод для очистки ошибок
     resetValidation() {
-        this._toggleButtonState();
+        //this._toggleButtonState();
 
         this._inputList.forEach((inputElement) => {
             this._hideError(inputElement);
