@@ -5,6 +5,7 @@ export class PopupWithForm extends Popup {
         super(selector);
         this._submitHandler = submitHandler;
         this._form = this._popup.querySelector('.popup__form');
+        this._submitButton = this._popup.querySelector('.popup__button-save');
     }
 
     prefillForm(formData) {
@@ -17,8 +18,13 @@ export class PopupWithForm extends Popup {
         super.setEventListeners();
         this._form.addEventListener('submit', () => {
             const formData = this._getInputValues();
-            this._submitHandler(formData);
-            this.close();
+            const submitButtonText = this._submitButton.textContent;
+            this._submitButton.textContent = "Сохранение...";
+            this._submitHandler(formData)
+            .finally(() => {
+                this._submitButton.textContent = submitButtonText;
+                this.close();
+            });
         });
     }
 

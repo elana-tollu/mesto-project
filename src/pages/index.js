@@ -47,13 +47,16 @@ function initComponents() {
         selectorDescription: '.profile__description',
         selectorAvanar: '.profile__avatar',
         loadUser: () => api.loadUser(),
-        updateUser: (userData) => api.updateUser(userData),
+        updateUser: (userData) => {
+            api.updateUser(userData);
+
+        }
     });
 
     const popupEditAvatar = new PopupWithForm(
         '.popup_edit-avatar',
         (formData) => {
-            api.updateUserAvatar(formData['avatar-link'])
+            return api.updateUserAvatar(formData['avatar-link'])
                 .then((user) => userInfo.renderUserInfo(user))
                 .catch(alert);
         }
@@ -61,7 +64,7 @@ function initComponents() {
     popupEditAvatar.setEventListeners();
     buttonEditAvatar.addEventListener('click', () => {
         popupEditAvatar.open();
-        popupEditAvatar.resetValidation();
+        //popupEditAvatar.resetValidation();
     });
 
     const cardsSection = new Section(
@@ -83,7 +86,7 @@ function initComponents() {
     const popupEditProfile = new PopupWithForm(
         '.popup_edit-profile',
         (formData) => {
-            userInfo
+            return userInfo
                 .setUserInfo({
                     name: formData['user-name'],
                     about: formData['user-description'],
@@ -102,7 +105,7 @@ function initComponents() {
     });
 
     const popupAddItem = new PopupWithForm('.popup_add-item', (cardData) => {
-        api.addCard({
+        return api.addCard({
             name: cardData['item-name'],
             link: cardData['item-link'],
         })
@@ -112,7 +115,7 @@ function initComponents() {
     popupAddItem.setEventListeners();
     buttonAdd.addEventListener('click', () => {
         popupAddItem.open();
-        popupAddItem.resetValidation();
+        //popupAddItem.resetValidation();
     });
 
     Promise.all([userInfo.getUserInfo(), api.loadCards()]) //заменила вызов функций на методы api
