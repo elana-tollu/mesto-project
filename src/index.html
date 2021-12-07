@@ -1,108 +1,219 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Элана Толлю">
-  <link rel="icon" href="favicon.png">
-  <title>Место</title>
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="Элана Толлю" />
+        <link rel="icon" href="favicon.png" />
+        <title>Место</title>
+    </head>
 
-<body class="page">
-    <header class="header page__section">
-        <img src="<%=require('./images/logo.svg')%>" alt="Логотип сайта" class="header__logo">
-    </header>
+    <body class="page">
+        <header class="header page__section">
+            <img
+                src="<%=require('./images/logo.svg')%>"
+                alt="Логотип сайта"
+                class="header__logo"
+            />
+        </header>
 
-    <main>
-        <section class="profile page__section">
-            <button type="button" class="button-edit button-edit_avatar">
-            <img src="<%=require('./images/avatar.png')%>" alt="Фото профиля" class="profile__avatar">
-            </button>
-            <div class="profile__info">
-                <div class="profile__title">
-                    <h1 class="profile__name">------------</h1>
-                    <button type="button" class="button-edit button-edit_profile"></button>
+        <main>
+            <section class="profile page__section">
+                <button type="button" class="button-edit button-edit_avatar">
+                    <img
+                        src="<%=require('./images/avatar.png')%>"
+                        alt="Фото профиля"
+                        class="profile__avatar"
+                    />
+                </button>
+                <div class="profile__info">
+                    <div class="profile__title">
+                        <h1 class="profile__name">------------</h1>
+                        <button
+                            type="button"
+                            class="button-edit button-edit_profile"
+                        ></button>
+                    </div>
+                    <p class="profile__description">------------------------</p>
                 </div>
-                <p class="profile__description">------------------------</p>
+                <button type="button" class="button-add"></button>
+            </section>
+
+            <div class="popup popup_edit-avatar">
+                <div class="popup__overlay popup__overlay_edit-avatar"></div>
+                <div class="popup__container popup__container_edit-avatar">
+                    <button
+                        type="button"
+                        class="
+                            popup__button-close popup__button-close_edit-avatar
+                        "
+                    ></button>
+                    <h2 class="popup__title popup__title_edit-avatar">
+                        Обновить аватар
+                    </h2>
+                    <form
+                        id="edit-avatar"
+                        name="edit-avatar"
+                        class="popup__form popup__form_edit-avatar"
+                    >
+                        <input
+                            type="url"
+                            name="avatar-link"
+                            class="
+                                popup__form-field popup__form-field_edit-avatar
+                            "
+                            required
+                            placeholder="Ссылка"
+                        />
+                        <span
+                            class="avatar-link-error popup__input-error"
+                        ></span>
+                        <button
+                            type="submit"
+                            disabled
+                            class="
+                                popup__button-save
+                                popup__button-save_edit-avatar
+                            "
+                        >
+                            Обновить
+                        </button>
+                    </form>
+                </div>
             </div>
-            <button type="button" class="button-add"></button>
-        </section>
 
-        <div class="popup popup_edit-avatar">
-            <div class="popup__overlay popup__overlay_edit-avatar"></div>
-            <div class="popup__container popup__container_edit-avatar">
-                <button type="button" class="popup__button-close popup__button-close_edit-avatar"></button>
-                <h2 class="popup__title popup__title_edit-avatar">Обновить аватар</h2>
-                <form id="edit-avatar" name="edit-avatar" class="popup__form popup__form_edit-avatar">
-                    <input type="url" name="avatar-link" class="popup__form-field popup__form-field_edit-avatar" required placeholder="Ссылка">
-                    <span class = "avatar-link-error popup__input-error"></span>
-                    <button type="submit" class="popup__button-save popup__button-save_edit-avatar">Обновить</button>
-                </form>
+            <div class="popup popup_edit-profile">
+                <div class="popup__overlay"></div>
+                <div class="popup__container">
+                    <button
+                        type="button"
+                        class="popup__button-close popup__button-close_profile"
+                    ></button>
+                    <h2 class="popup__title">Редактировать профиль</h2>
+                    <form
+                        id="edit-profile"
+                        name="user-info"
+                        class="popup__form popup__form_edit-profile"
+                        novalidate
+                    >
+                        <input
+                            type="text"
+                            name="user-name"
+                            class="popup__form-field"
+                            minlength="2"
+                            maxlength="40"
+                            required
+                            placeholder="Имя"
+                        />
+                        <span class="user-name-error popup__input-error"></span>
+                        <input
+                            type="text"
+                            name="user-description"
+                            class="popup__form-field"
+                            minlength="2"
+                            maxlength="200"
+                            required
+                            placeholder="О себе"
+                        />
+                        <span
+                            class="user-description-error popup__input-error"
+                        ></span>
+                        <button
+                            type="submit"
+                            class="popup__button-save"
+                            disabled
+                        >
+                            Сохранить
+                        </button>
+                    </form>
+                </div>
             </div>
-        </div>
 
-        <div class="popup popup_edit-profile">
-            <div class="popup__overlay"></div>
-            <div class="popup__container">
-                <button type="button" class="popup__button-close popup__button-close_profile"></button>
-                <h2 class="popup__title">Редактировать профиль</h2>
-                <form id="edit-profile" name="user-info" class="popup__form popup__form_edit-profile" novalidate>
-                    <input type="text" name="user-name" class="popup__form-field" minlength="2" maxlength="40" required placeholder="Имя">
-                    <span class = "user-name-error popup__input-error"></span>
-                    <input type="text" name="user-description" class="popup__form-field" minlength="2" maxlength="200" required placeholder="О себе">
-                    <span class = "user-description-error popup__input-error"></span>
-                    <button type="submit" class="popup__button-save">Сохранить</button>
-                </form>
+            <div class="popup popup_add-item">
+                <div class="popup__overlay popup__overlay_add-item"></div>
+                <div class="popup__container popup__container_add-item">
+                    <button
+                        type="button"
+                        class="popup__button-close popup__button-close_add-item"
+                    ></button>
+                    <h2 class="popup__title popup__title_add-item">
+                        Новое место
+                    </h2>
+                    <form
+                        id="add-item"
+                        name="item-info"
+                        class="popup__form popup__form_add-item"
+                    >
+                        <input
+                            type="text"
+                            name="item-name"
+                            class="popup__form-field popup__form-field_add-item"
+                            minlength="2"
+                            maxlength="30"
+                            required
+                            placeholder="Название"
+                        />
+                        <span class="item-name-error popup__input-error"></span>
+                        <input
+                            type="url"
+                            name="item-link"
+                            class="popup__form-field popup__form-field_add-item"
+                            required
+                            placeholder="Ссылка на картинку"
+                        />
+                        <span class="item-link-error popup__input-error"></span>
+                        <button
+                            type="submit"
+                            class="
+                                popup__button-save popup__button-save_add-item
+                            "
+                            disabled
+                        >
+                            Создать
+                        </button>
+                    </form>
+                </div>
             </div>
-        </div>
 
-        <div class="popup popup_add-item">
-            <div class="popup__overlay popup__overlay_add-item"></div>
-            <div class="popup__container popup__container_add-item">
-                <button type="button" class="popup__button-close popup__button-close_add-item"></button>
-                <h2 class="popup__title popup__title_add-item">Новое место</h2>
-                <form id="add-item" name="item-info" class="popup__form popup__form_add-item">
-                    <input type="text" name="item-name" class="popup__form-field popup__form-field_add-item" minlength="2" maxlength="30" required placeholder="Название">
-                    <span class = "item-name-error popup__input-error"></span>
-                    <input type="url" name="item-link" class="popup__form-field popup__form-field_add-item" required placeholder="Ссылка на картинку">
-                    <span class = "item-link-error popup__input-error"></span>
-                    <button type="submit" class="popup__button-save popup__button-save_add-item">Создать</button>
-                </form>
-            </div>
-        </div>
-
-        <section class="elements page__section">
-            <ul class="elements__list">
-
-                <template id = "card-template">
-                    <li class="element" data-card-id="">
-                        <button type="button" class="element__button-trash"></button>
-                        <img class="element__image">
-                        <div class="element__title">
-                            <h2 class="element__name"></h2>
-                            <div class="element__like">
-                                <button type="button" class="button-like"></button>
-                                <div class="element__like-count"></div>
+            <section class="elements page__section">
+                <ul class="elements__list">
+                    <template id="card-template">
+                        <li class="element" data-card-id="">
+                            <button
+                                type="button"
+                                class="element__button-trash"
+                            ></button>
+                            <img class="element__image" />
+                            <div class="element__title">
+                                <h2 class="element__name"></h2>
+                                <div class="element__like">
+                                    <button
+                                        type="button"
+                                        class="button-like"
+                                    ></button>
+                                    <div class="element__like-count"></div>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                </template>
-            </ul>
-        </section>
+                        </li>
+                    </template>
+                </ul>
+            </section>
 
-        <div class="popup popup_image">
-            <div class="popup__overlay popup__overlay_image"></div>
-            <div class="popup__container popup__container_image">
-                <button type="button" class="popup__button-close popup__button-close_image"></button>
-                <img class="element__image element__image_open">
-                <h2 class="element__name element__name_open"></h2>
+            <div class="popup popup_image">
+                <div class="popup__overlay popup__overlay_image"></div>
+                <div class="popup__container popup__container_image">
+                    <button
+                        type="button"
+                        class="popup__button-close popup__button-close_image"
+                    ></button>
+                    <img class="element__image element__image_open" />
+                    <h2 class="element__name element__name_open"></h2>
+                </div>
             </div>
-        </div>
+        </main>
 
-    </main>
-
-    <footer class="footer page__section">
-        <p class="footer__copyright">&copy; 2021 Элана Толлю</p>
-    </footer>
-
-</body>
+        <footer class="footer page__section">
+            <p class="footer__copyright">&copy; 2021 Элана Толлю</p>
+        </footer>
+    </body>
+</html>

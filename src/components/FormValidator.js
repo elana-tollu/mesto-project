@@ -57,7 +57,7 @@ export class FormValidator {
     }
     //метод для очистки ошибок
     resetValidation() {
-        //this._setSubmitButtonState();
+        this._setSubmitButtonState();
 
         this._inputList.forEach((inputElement) => {
             this._hideError(inputElement);
@@ -66,6 +66,13 @@ export class FormValidator {
 
     //блокировка/разблокировка кнопки
     _setSubmitButtonState() {
-        this._submitButton.disabled = !this._form.checkValidity();
+        //this._submitButton.disabled = !this._form.checkValidity();
+        if (!this._form.checkValidity()) {
+            //this._submitButton.classList.add(this._inactiveButtonClass);
+            this._submitButton.disabled = true;
+        } else {
+            //this._submitButton.classList.remove(this._inactiveButtonClass);
+            this._submitButton.disabled = false;
+        }
     }
 }
