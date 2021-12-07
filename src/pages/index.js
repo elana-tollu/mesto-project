@@ -1,6 +1,6 @@
 import './index.css';
 import { FormValidator } from '../components/FormValidator.js';
-import { objForm } from '../components/constants.js';
+import { objForm } from '../utils/constants.js';
 import { Card } from '../components/Card.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';

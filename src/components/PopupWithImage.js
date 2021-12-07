@@ -15,5 +15,3 @@ export class PopupWithImage extends Popup {
         popupTitle.textContent = alt;
     }
 }
-
-window.PopupWithImage = PopupWithImage;

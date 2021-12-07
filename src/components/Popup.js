@@ -28,5 +28,3 @@ export class Popup {
         buttonClose.addEventListener('click', () => this.close());
     }
 }
-
-window.Popup = Popup;
