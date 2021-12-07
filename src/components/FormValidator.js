@@ -66,7 +66,6 @@ export class FormValidator {
 
     //блокировка/разблокировка кнопки
     _setSubmitButtonState() {
-        //this._submitButton.disabled = !this._form.checkValidity();
         if (!this._form.checkValidity()) {
             //this._submitButton.classList.add(this._inactiveButtonClass);
             this._submitButton.disabled = true;
