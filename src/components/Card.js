@@ -21,30 +21,29 @@ export class Card {
         const cardTemplate = document.querySelector(
             this._templateSelector
         ).content; // нашли шаблон карточки
-        const card = cardTemplate.querySelector(".element").cloneNode(true); // создаем новый узел ДОМ
-        card.dataset.cardId = this._cardData.id; // запоминаем id карточки в атрибуте
+        this._card = cardTemplate.querySelector(".element").cloneNode(true); // создаем новый узел ДОМ
 
-        const trashButton = card.querySelector(".element__button-trash"); //найти кнопку удаления
-        const likeButton = card.querySelector(".button-like"); // найти кнопку лайка
+        const trashButton = this._card.querySelector(".element__button-trash"); //найти кнопку удаления
+        const likeButton = this._card.querySelector(".button-like"); // найти кнопку лайка
 
-        const image = card.querySelector(".element__image"); // найти карточку
+        const image = this._card.querySelector(".element__image"); // найти карточку
         image.src = this._cardData.link; // присвоить значения
         image.alt = this._cardData.name;
 
-        const heading = card.querySelector(".element__name"); // найти заголовок
+        const heading = this._card.querySelector(".element__name"); // найти заголовок
         heading.textContent = this._cardData.name; // присвоить значение
 
-        const likesCount = card.querySelector(".element__like-count"); // найти счетчик лайков
+        const likesCount = this._card.querySelector(".element__like-count"); // найти счетчик лайков
         likesCount.textContent = this._cardData.likesCount; // присвоить значение
 
         this._setEventListeners({image, trashButton, likeButton, likesCount});
 
-        return card;
+        return this._card;
     }
 
     _setEventListeners({image, trashButton, likeButton, likesCount}) {
         if (this._getCurrentUserId() === this._cardData.ownerId) {
-            trashButton.addEventListener("click", (clickEvent) => this._deleteItem(clickEvent)); // прицепить слушатель
+            trashButton.addEventListener("click", () => this._deleteItem()); // прицепить слушатель
         } else {
             trashButton.remove();
         }
@@ -74,12 +73,9 @@ export class Card {
         image.addEventListener("click", () => this._handleCardClick()); // прицепить слушатель
     }
 
-    _deleteItem(clickEvent) {
-        const buttonTrash = clickEvent.target;
-        const item = buttonTrash.closest(".element");
-        const cardId = item.dataset.cardId;
-        this._handleCardDelete(cardId)
-            .then(() => item.remove())
+    _deleteItem() {
+        this._handleCardDelete(this._cardData.id)
+            .then(() => this._card.remove())
             .catch(alert);
     }
 }
