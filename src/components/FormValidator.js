@@ -24,7 +24,7 @@ export class FormValidator {
 
     //метод для очистки ошибок
     resetValidation() {
-        ///this._setSubmitButtonState();
+        this._setSubmitButtonState();
 
         this._inputList.forEach((input) => {
             this._hideInputError(input);
