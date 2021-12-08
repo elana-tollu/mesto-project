@@ -945,7 +945,7 @@ template {
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
-    color: #FFF;
+    color: #fff;
     cursor: pointer;
     transition: opacity 1s ease;
 }
@@ -955,7 +955,8 @@ template {
 }
 
 .popup__button-save:disabled {
-    background: #E5E5E5;
+    background: #e5e5e5;
+    cursor: not-allowed;
 }
 
 @media (min-width: 650px) {
