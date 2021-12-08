@@ -39,7 +39,7 @@ function initComponents() {
     );
     linkFormValidation.enableValidation();
 
-    const popupImage = new PopupWithImage('.popup_image');
+    const popupImage = new PopupWithImage('.popup_image', '.page');
     popupImage.setEventListeners();
 
     const userInfo = new UserInfo({
@@ -47,13 +47,12 @@ function initComponents() {
         selectorDescription: '.profile__description',
         selectorAvanar: '.profile__avatar',
         loadUser: () => api.loadUser(),
-        updateUser: (userData) => {
-            api.updateUser(userData);
-        },
+        updateUser: (userData) => api.updateUser(userData),
     });
 
     const popupEditAvatar = new PopupWithForm(
         '.popup_edit-avatar',
+        '.page',
         (formData) => {
             return api
                 .updateUserAvatar(formData['avatar-link'])
@@ -85,6 +84,7 @@ function initComponents() {
 
     const popupEditProfile = new PopupWithForm(
         '.popup_edit-profile',
+        '.page',
         (formData) => {
             return userInfo
                 .setUserInfo({
@@ -104,7 +104,7 @@ function initComponents() {
         });
     });
 
-    const popupAddItem = new PopupWithForm('.popup_add-item', (cardData) => {
+    const popupAddItem = new PopupWithForm('.popup_add-item', '.page', (cardData) => {
         return api
             .addCard({
                 name: cardData['item-name'],

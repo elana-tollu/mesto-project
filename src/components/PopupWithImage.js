@@ -1,8 +1,8 @@
 import { Popup } from './Popup.js';
 
 export class PopupWithImage extends Popup {
-    constructor(selector) {
-        super(selector);
+    constructor(selector, bodySelector) {
+        super(selector, bodySelector);
       }
 
     open(src, alt) { // открывает мод.окно

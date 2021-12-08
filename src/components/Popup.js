@@ -1,18 +1,17 @@
-const body = document.querySelector('.page');
-
 export class Popup {
-    constructor(selector) {
-      this._popup = document.querySelector(selector);
+    constructor(popupSelector, bodySelector) {
+      this._popup = document.querySelector(popupSelector);
+      this._body = document.querySelector(bodySelector);
     }
 
     open() { // открывает мод.окно
         this._popup.classList.add('popup_opened');
-        body.addEventListener('keydown', event => this._handleEscClose(event));
+        this._body.addEventListener('keydown', event => this._handleEscClose(event));
     }
 
     close() { // закрывает мод.окно
         this._popup.classList.remove('popup_opened');
-        body.removeEventListener('keydown', event => this._handleEscClose(event));
+        this._body.removeEventListener('keydown', event => this._handleEscClose(event));
     }
 
     _handleEscClose(event) {
