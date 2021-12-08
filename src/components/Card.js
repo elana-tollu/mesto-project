@@ -25,16 +25,11 @@ export class Card {
         card.dataset.cardId = this._cardData.id; // запоминаем id карточки в атрибуте
 
         const trashButton = card.querySelector(".element__button-trash"); //найти кнопку удаления
-        if (this._getCurrentUserId() === this._cardData.ownerId) {
-            trashButton.addEventListener("click", (clickEvent) => this._deleteItem(clickEvent)); // прицепить слушатель
-        } else {
-            trashButton.remove();
-        }
+        const likeButton = card.querySelector(".button-like"); // найти кнопку лайка
 
         const image = card.querySelector(".element__image"); // найти карточку
         image.src = this._cardData.link; // присвоить значения
         image.alt = this._cardData.name;
-        image.addEventListener("click", () => this._handleCardClick()); // прицепить слушатель
 
         const heading = card.querySelector(".element__name"); // найти заголовок
         heading.textContent = this._cardData.name; // присвоить значение
@@ -42,7 +37,18 @@ export class Card {
         const likesCount = card.querySelector(".element__like-count"); // найти счетчик лайков
         likesCount.textContent = this._cardData.likesCount; // присвоить значение
 
-        const likeButton = card.querySelector(".button-like"); // найти кнопку лайка
+        this._setEventListeners({image, trashButton, likeButton, likesCount});
+
+        return card;
+    }
+
+    _setEventListeners({image, trashButton, likeButton, likesCount}) {
+        if (this._getCurrentUserId() === this._cardData.ownerId) {
+            trashButton.addEventListener("click", (clickEvent) => this._deleteItem(clickEvent)); // прицепить слушатель
+        } else {
+            trashButton.remove();
+        }
+
         if (this._cardData.likes.find((like) => like._id === this._getCurrentUserId())) {
             likeButton.classList.add("button-like_active");
         }
@@ -65,7 +71,7 @@ export class Card {
             }
         });
 
-        return card;
+        image.addEventListener("click", () => this._handleCardClick()); // прицепить слушатель
     }
 
     _deleteItem(clickEvent) {
