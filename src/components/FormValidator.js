@@ -7,7 +7,6 @@ export class FormValidator {
         this._submitButton = this._form.querySelector(
             validationObject.submitButtonSelector
         );
-        this._inactiveButtonClass = validationObject.inactiveButtonClass;
         this._errorClass = validationObject.errorClass;
         this._inputErrorClass = validationObject.inputErrorClass;
         this._buttonElement = this._form.querySelector(
@@ -21,6 +20,15 @@ export class FormValidator {
             evt.preventDefault();
         });
         this._setEventListeners();
+    }
+
+    //метод для очистки ошибок
+    resetValidation() {
+        ///this._setSubmitButtonState();
+
+        this._inputList.forEach((input) => {
+            this._hideInputError(input);
+        });
     }
 
     _setEventListeners() {
@@ -55,22 +63,12 @@ export class FormValidator {
         inputError.classList.remove(this._errorClass);
         inputError.textContent = '';
     }
-    //метод для очистки ошибок
-    resetValidation() {
-        this._setSubmitButtonState();
-
-        this._inputList.forEach((inputElement) => {
-            this._hideError(inputElement);
-        });
-    }
 
     //блокировка/разблокировка кнопки
     _setSubmitButtonState() {
         if (!this._form.checkValidity()) {
-            //this._submitButton.classList.add(this._inactiveButtonClass);
             this._submitButton.disabled = true;
         } else {
-            //this._submitButton.classList.remove(this._inactiveButtonClass);
             this._submitButton.disabled = false;
         }
     }

@@ -49,14 +49,14 @@ function initComponents() {
         loadUser: () => api.loadUser(),
         updateUser: (userData) => {
             api.updateUser(userData);
-
-        }
+        },
     });
 
     const popupEditAvatar = new PopupWithForm(
         '.popup_edit-avatar',
         (formData) => {
-            return api.updateUserAvatar(formData['avatar-link'])
+            return api
+                .updateUserAvatar(formData['avatar-link'])
                 .then((user) => userInfo.renderUserInfo(user))
                 .catch(alert);
         }
@@ -64,7 +64,7 @@ function initComponents() {
     popupEditAvatar.setEventListeners();
     buttonEditAvatar.addEventListener('click', () => {
         popupEditAvatar.open();
-        //popupEditAvatar.resetValidation();
+        linkFormValidation.resetValidation();
     });
 
     const cardsSection = new Section(
@@ -97,25 +97,26 @@ function initComponents() {
     popupEditProfile.setEventListeners();
     buttonEditProfile.addEventListener('click', () => {
         popupEditProfile.open();
+        userFormValidation.resetValidation();
         popupEditProfile.prefillForm({
             'user-name': userInfo.getName(),
             'user-description': userInfo.getDescription(),
         });
-        //popupEditProfile.resetValidation();
     });
 
     const popupAddItem = new PopupWithForm('.popup_add-item', (cardData) => {
-        return api.addCard({
-            name: cardData['item-name'],
-            link: cardData['item-link'],
-        })
+        return api
+            .addCard({
+                name: cardData['item-name'],
+                link: cardData['item-link'],
+            })
             .then((card) => cardsSection.renderItem(card))
             .catch(alert);
     });
     popupAddItem.setEventListeners();
     buttonAdd.addEventListener('click', () => {
         popupAddItem.open();
-        //popupAddItem.resetValidation();
+        placeFormValidation.resetValidation();
     });
 
     Promise.all([userInfo.getUserInfo(), api.loadCards()]) //заменила вызов функций на методы api
