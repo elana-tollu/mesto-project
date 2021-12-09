@@ -9,9 +9,6 @@ export class FormValidator {
         );
         this._errorClass = validationObject.errorClass;
         this._inputErrorClass = validationObject.inputErrorClass;
-        this._buttonElement = this._form.querySelector(
-            validationObject.submitButtonSelector
-        );
     }
 
     ///наложения слушателя для валидации инпутов конкретной формы
