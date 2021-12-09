@@ -1,23 +1,25 @@
 export class Popup {
     constructor(popupSelector, bodySelector) {
-      this._popup = document.querySelector(popupSelector);
-      this._body = document.querySelector(bodySelector);
+        this._popup = document.querySelector(popupSelector);
+        this._body = document.querySelector(bodySelector);
+        const handleEscClose = (event) => {
+            if (event.key === 'Escape') {
+                this.close();
+            }
+        };
+        this._handleEscClose = handleEscClose.bind(this);
     }
 
-    open() { // открывает мод.окно
+    open() {
+        // открывает мод.окно
         this._popup.classList.add('popup_opened');
-        this._body.addEventListener('keydown', event => this._handleEscClose(event));
+        this._body.addEventListener('keydown', this._handleEscClose);
     }
 
-    close() { // закрывает мод.окно
+    close() {
+        // закрывает мод.окно
         this._popup.classList.remove('popup_opened');
-        this._body.removeEventListener('keydown', event => this._handleEscClose(event));
-    }
-
-    _handleEscClose(event) {
-        if(event.key === 'Escape') {
-            this.close();
-        }
+        this._body.removeEventListener('keydown', this._handleEscClose);
     }
 
     setEventListeners() {
