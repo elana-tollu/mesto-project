@@ -21,7 +21,10 @@ export class PopupWithForm extends Popup {
             const submitButtonText = this._submitButton.textContent;
             this._submitButton.textContent = 'Сохранение...';
             this._submitHandler(formData)
-                .then(() => this.close())
+                .then(() => {
+                    this.close();
+                })
+                .catch(alert)
                 .finally(() => {
                     this._submitButton.textContent = submitButtonText;
                 });

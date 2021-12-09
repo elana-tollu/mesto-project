@@ -86,12 +86,10 @@ function initComponents() {
         '.popup_edit-profile',
         '.page',
         (formData) => {
-            return userInfo
-                .setUserInfo({
-                    name: formData['user-name'],
-                    about: formData['user-description'],
-                })
-                .catch(alert);
+            return userInfo.setUserInfo({
+                name: formData['user-name'],
+                about: formData['user-description'],
+            });
         }
     );
     popupEditProfile.setEventListeners();
@@ -104,15 +102,19 @@ function initComponents() {
         });
     });
 
-    const popupAddItem = new PopupWithForm('.popup_add-item', '.page', (cardData) => {
-        return api
-            .addCard({
-                name: cardData['item-name'],
-                link: cardData['item-link'],
-            })
-            .then((card) => cardsSection.renderItem(card))
-            .catch(alert);
-    });
+    const popupAddItem = new PopupWithForm(
+        '.popup_add-item',
+        '.page',
+        (cardData) => {
+            return api
+                .addCard({
+                    name: cardData['item-name'],
+                    link: cardData['item-link'],
+                })
+                .then((card) => cardsSection.renderItem(card))
+                .catch(alert);
+        }
+    );
     popupAddItem.setEventListeners();
     buttonAdd.addEventListener('click', () => {
         popupAddItem.open();
